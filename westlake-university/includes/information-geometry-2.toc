@@ -1,0 +1,54 @@
+\contentsline {section}{\tocsection {}{1}{Exponential / Mixture Duality in Information Geometry}}{1}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{1. Introduction to Exponential and Mixture Families}}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.1}{1.1 Historical Context and Motivation}}{1}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.2}{1.2 The Fundamental Duality}}{1}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.3}{1.3 Geometric Interpretation}}{2}{subsubsection.1.1.3}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{2. Exponential Families (e-families)}}{2}{subsection.1.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.2.1}{2.1 Definition and Basic Structure}}{2}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.2.2}{2.2 Extended Examples with Detailed Calculations}}{3}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.2.3}{2.3 Properties of the Log-Partition Function}}{4}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.2.4}{2.4 Moment Generating Properties}}{5}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.2.5}{2.5 Maximum Likelihood Estimation}}{5}{subsubsection.1.2.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.2.6}{2.6 Exponential Family Manifold Structure}}{6}{subsubsection.1.2.6}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{3. The Duality Relationship}}{6}{subsection.1.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.1}{3.1 Dual Parameterizations and the Legendre Transform}}{6}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.2}{3.2 Detailed Derivation of Duality Relations}}{6}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.3}{3.3 Bregman Divergences and their Geometric Meaning}}{7}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.4}{3.4 KL Divergence as Bregman Divergence}}{7}{subsubsection.1.3.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.5}{3.5 Dual Coordinate Systems}}{8}{subsubsection.1.3.5}%
+\contentsline {subsection}{\tocsubsection {}{1.4}{4. Mixture Families (m-families)}}{8}{subsection.1.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.1}{4.1 Definition and Structure}}{8}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.2}{4.2 Exponential vs Mixture Curves}}{8}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.3}{4.3 Detailed Geometric Analysis}}{9}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.4}{4.4 Dual Coordinate Representation}}{9}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.5}{4.5 Applications of Mixture Families}}{9}{subsubsection.1.4.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.6}{4.6 Dual Representation Theorem}}{10}{subsubsection.1.4.6}%
+\contentsline {subsection}{\tocsubsection {}{1.5}{5. Information-Theoretic Quantities}}{10}{subsection.1.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.1}{5.1 Shannon Entropy}}{10}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.2}{5.2 Cross-Entropy and Mutual Information}}{11}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.3}{5.3 Relative Entropy and Information Divergence}}{11}{subsubsection.1.5.3}%
+\contentsline {subsection}{\tocsubsection {}{1.6}{6. Maximum Entropy and Minimum Divergence Inference}}{11}{subsection.1.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.1}{6.1 Maximum Entropy Principle}}{12}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.2}{6.2 Detailed Examples of Maximum Entropy}}{12}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.3}{6.3 Minimum Divergence Principle}}{12}{subsubsection.1.6.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.4}{6.4 Algorithms for Maximum Entropy}}{13}{subsubsection.1.6.4}%
+\contentsline {subsection}{\tocsubsection {}{1.7}{7. Geometric Properties of KL Divergence}}{13}{subsection.1.7}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.1}{7.1 KL Divergence as a "Distance"}}{13}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.2}{7.2 Generalized Pythagorean Theorem}}{13}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.3}{7.3 Detailed Proof of the Pythagorean Theorem}}{13}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.4}{7.4 Applications of the Pythagorean Theorem}}{14}{subsubsection.1.7.4}%
+\contentsline {subsection}{\tocsubsection {}{1.8}{8. Applications and Examples}}{14}{subsection.1.8}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.8.1}{8.1 Gaussian Distribution}}{14}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.8.2}{8.2 Categorical Distribution}}{14}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.8.3}{8.3 Exponential Family GLMs}}{15}{subsubsection.1.8.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.8.4}{8.4 Neural Networks and Deep Learning}}{15}{subsubsection.1.8.4}%
+\contentsline {subsection}{\tocsubsection {}{1.9}{9. Connection to Aitchison Geometry}}{15}{subsection.1.9}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.9.1}{9.1 Compositional Data as Exponential Families}}{15}{subsubsection.1.9.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.9.2}{9.2 Geometric Structure}}{16}{subsubsection.1.9.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.9.3}{9.3 Why Weighted Norms are Natural}}{16}{subsubsection.1.9.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.9.4}{9.4 Practical Implications}}{16}{subsubsection.1.9.4}%
+\contentsline {subsection}{\tocsubsection {}{1.10}{10. Summary and Future Directions}}{16}{subsection.1.10}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.10.1}{10.1 Fundamental Insights}}{16}{subsubsection.1.10.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.10.2}{10.2 Connections to Other Areas}}{16}{subsubsection.1.10.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.10.3}{10.3 Open Problems and Future Research}}{17}{subsubsection.1.10.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.10.4}{10.4 Conclusion}}{17}{subsubsection.1.10.4}%

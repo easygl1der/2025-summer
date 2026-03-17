@@ -1,0 +1,145 @@
+{
+  "theme:use-light": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "D"
+    }
+  ],
+  "theme:use-dark": [
+    {
+      "modifiers": [
+        "Alt",
+        "Shift"
+      ],
+      "key": "N"
+    }
+  ],
+  "app:open-settings": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "M"
+    }
+  ],
+  "easy-typing-obsidian:easy-typing-insert-codeblock": [],
+  "obsidian-excalidraw-plugin:insert-link": [],
+  "obsidian-excalidraw-plugin:insert-link-to-element": [],
+  "workspace:next-tab": [
+    {
+      "modifiers": [
+        "Ctrl"
+      ],
+      "key": "PageDown"
+    }
+  ],
+  "cm-typewriter-scroll-obsidian:toggle-typewriter-sroll": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "P"
+    }
+  ],
+  "obsidian-excalidraw-plugin:insert-LaTeX-symbol": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "="
+    }
+  ],
+  "editor:toggle-source": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "O"
+    }
+  ],
+  "obsidian-excalidraw-plugin-ymjr:insert-LaTeX-symbol": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "Q"
+    }
+  ],
+  "easy-typing-obsidian:easy-typing-format-switch": [],
+  "copy-as-latex:copy-as-latex": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "C"
+    }
+  ],
+  "editor:insert-link": [],
+  "inlineai:show-cursor-tooltip": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "K"
+    }
+  ],
+  "easy-typing-obsidian:easy-typing-goto-new-line-after-cur-line": [],
+  "editor:open-link-in-new-leaf": [],
+  "file-explorer:new-file-in-new-pane": [],
+  "editing-toolbar:underline": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "U"
+    }
+  ],
+  "open-with-default-app:show": [
+    {
+      "modifiers": [
+        "Alt"
+      ],
+      "key": "O"
+    }
+  ],
+  "copy-as-latex:copy-as-mathematica": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "M"
+    }
+  ],
+  "copy-as-latex:export-and-compile-latex": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "E"
+    }
+  ],
+  "inlineai:accept-tooltip": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "Enter"
+    }
+  ],
+  "inlineai:discard-tooltip": [
+    {
+      "modifiers": [
+        "Mod",
+        "Shift"
+      ],
+      "key": "N"
+    }
+  ]
+}

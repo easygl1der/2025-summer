@@ -1,0 +1,56 @@
+\contentsline {section}{\tocsection {}{1}{1. Introduction and Basic Definitions}}{2}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{1.1 The Probability Simplex}}{2}{subsection.1.1}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{1.2 The Aitchison Geometry}}{2}{subsection.1.2}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{1.3 The Centered Log-Ratio (clr) Transform}}{2}{subsection.1.3}%
+\contentsline {section}{\tocsection {}{2}{2. What is a Norm?}}{3}{section.2}%
+\contentsline {section}{\tocsection {}{3}{3. Valid Norms on the Aitchison Space}}{3}{section.3}%
+\contentsline {subsection}{\tocsubsection {}{3.1}{3.1 The $L^p$ Norms (Complete Analysis)}}{3}{subsection.3.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.1.1}{Definition}}{3}{subsubsection.3.1.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.1.2}{Complete Proof that $\|\cdot \|_p$ is a Norm}}{3}{subsubsection.3.1.2}%
+\contentsline {subsection}{\tocsubsection {}{3.2}{3.2 The Dual Norm}}{4}{subsection.3.2}%
+\contentsline {subsection}{\tocsubsection {}{3.3}{3.3 Weighted $L^p$ Norms}}{4}{subsection.3.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.3.1}{Definition}}{4}{subsubsection.3.3.1}%
+\contentsline {subsection}{\tocsubsection {}{3.4}{3.3 Weighted $L^p$ Norms (Complete Analysis)}}{5}{subsection.3.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.4.1}{Definition and Motivation}}{5}{subsubsection.3.4.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.4.2}{Complete Proof that $\|\cdot \|_{p,w}$ is a Norm}}{5}{subsubsection.3.4.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.4.3}{Derivation of the Dual Norm}}{6}{subsubsection.3.4.3}%
+\contentsline {subsection}{\tocsubsection {}{3.5}{3.4 Orlicz Norms (Advanced Topic)}}{6}{subsection.3.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.5.1}{What is a Young Function?}}{6}{subsubsection.3.5.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.5.2}{Definition of Orlicz Norm}}{7}{subsubsection.3.5.2}%
+\contentsline {subsection}{\tocsubsection {}{3.6}{3.4 Orlicz Norms (Complete Analysis)}}{7}{subsection.3.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.6.1}{What is a Young Function?}}{7}{subsubsection.3.6.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.6.2}{Definition and Alternative Characterizations}}{7}{subsubsection.3.6.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.6.3}{Complete Proof that $\|\cdot \|_\Phi $ is a Norm}}{7}{subsubsection.3.6.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{3.6.4}{The Conjugate Young Function and Dual Norm}}{8}{subsubsection.3.6.4}%
+\contentsline {section}{\tocsection {}{4}{4. Connection to Information Geometry}}{9}{section.4}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{4.1 What are Exponential and Mixture Families?}}{9}{subsection.4.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.1.1}{Exponential Families (e-families)}}{9}{subsubsection.4.1.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.1.2}{Mixture Families (m-families)}}{9}{subsubsection.4.1.2}%
+\contentsline {subsection}{\tocsubsection {}{4.2}{4.2 The Duality}}{9}{subsection.4.2}%
+\contentsline {subsection}{\tocsubsection {}{4.3}{4.3 The Deep Connection: How Norm Duality Reflects e/m Duality}}{9}{subsection.4.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.1}{4.3.1 The Fundamental Theorem}}{10}{subsubsection.4.3.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.2}{4.3.2 The clr Transform as e-flat Coordinates}}{10}{subsubsection.4.3.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.3}{4.3.3 The Dual Space as m-flat Coordinates}}{10}{subsubsection.4.3.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.4}{4.3.4 The Fisher Information Metric and $L^2$ Norm}}{11}{subsubsection.4.3.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.5}{4.3.5 Norm Duality and Coordinate System Duality}}{11}{subsubsection.4.3.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.6}{4.3.6 Specific Examples of the Duality}}{12}{subsubsection.4.3.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{4.3.7}{4.3.7 Orlicz Norms and Divergences}}{12}{subsubsection.4.3.7}%
+\contentsline {subsection}{\tocsubsection {}{4.4}{4.4 Summary of the Deep Connection}}{13}{subsection.4.4}%
+\contentsline {section}{\tocsection {}{5}{5. Why Other "Natural" Candidates Fail}}{13}{section.5}%
+\contentsline {subsection}{\tocsubsection {}{5.1}{5.1 Fisher Information Weighted Norm}}{13}{subsection.5.1}%
+\contentsline {subsection}{\tocsubsection {}{5.2}{5.2 Bregman-Exponential Norm}}{13}{subsection.5.2}%
+\contentsline {subsection}{\tocsubsection {}{5.3}{5.3 KL-Divergence Based Norm}}{14}{subsection.5.3}%
+\contentsline {section}{\tocsection {}{6}{6. The Most Suitable Norms: Weighted $L^p$ and Orlicz Norms}}{14}{section.6}%
+\contentsline {subsection}{\tocsubsection {}{6.1}{6.1 Why the Standard $L^2$ Norm is Insufficient}}{14}{subsection.6.1}%
+\contentsline {subsection}{\tocsubsection {}{6.2}{6.2 Weighted $L^p$ Norms: The Natural Generalization}}{14}{subsection.6.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.2.1}{6.2.1 Why Weighted $L^p$ Norms are More Suitable}}{14}{subsubsection.6.2.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.2.2}{6.2.2 Detailed Interpretations of Weighted $L^p$ Norms}}{14}{subsubsection.6.2.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.2.3}{6.2.3 Choosing Optimal Weights}}{15}{subsubsection.6.2.3}%
+\contentsline {subsection}{\tocsubsection {}{6.3}{6.3 Orlicz Norms: The Most General Suitable Framework}}{16}{subsection.6.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.3.1}{6.3.1 Why Orlicz Norms are Superior}}{16}{subsubsection.6.3.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.3.2}{6.3.2 Detailed Interpretations of Specific Orlicz Norms}}{16}{subsubsection.6.3.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.3.3}{6.3.3 Choosing Optimal Young Functions}}{17}{subsubsection.6.3.3}%
+\contentsline {subsection}{\tocsubsection {}{6.4}{6.4 Practical Guidelines for Norm Selection}}{17}{subsection.6.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.4.1}{6.4.1 Decision Framework}}{17}{subsubsection.6.4.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{6.4.2}{6.4.2 Computational Algorithms}}{18}{subsubsection.6.4.2}%
+\contentsline {section}{\tocsection {}{7}{7. Summary}}{18}{section.7}%

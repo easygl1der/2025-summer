@@ -1,0 +1,29 @@
+[Spacetime and Geometry: An Introduction to General Relativity | Sean Carroll | download on Z-Library](https://zh.articles.sk/book/2711758/537be7/spacetime-and-geometry-an-introduction-to-general-relativity.html)
+
+The essential idea is straightforward: while most forces of nature are represented by fields defined on spacetime (e.g. the electrmagnetic field, the short-range fields), gravity is inherent in spacetime itself. In particular, what we experiences as "<u>gravity</u>" is a manifestation of the **curvature** of spacetime. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

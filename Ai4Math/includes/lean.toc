@@ -1,0 +1,2 @@
+\contentsline {subsection}{\tocsubsection {}{0.1}{Lean 证明的基本结构}}{1}{subsection.0.1}%
+\contentsline {subsection}{\tocsubsection {}{0.2}{你提供的例子：\lstinline {example : ∃ x : ℝ, 2 < x ∧ x < 3 := by ...}}}{3}{subsection.0.2}%

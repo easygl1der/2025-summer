@@ -1,0 +1,515 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+		% 超链接设置
+		\hypersetup{
+		    colorlinks=true,
+		    linkcolor=red,
+		    filecolor=magenta,
+		    urlcolor=cyan,
+		    pdftitle={\@title},
+		    pdfauthor={\@author},
+		    pdfsubject={数学笔记},
+		    pdfkeywords={数学},
+		    bookmarksnumbered=true,
+		    bookmarksopen=true,
+		    bookmarksopenlevel=6,
+		    pdfstartview=FitH,
+		    pdfpagemode=UseOutlines,
+		    pdfborder={0 0 0}
+		}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/资料/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Chapter 3: Logic in Lean - Complete Beginner's Guide}
+
+Based on \href{https://leanprover-community.github.io/mathematics_in_lean/C03_Logic.html}{Mathematics in Lean - Chapter 3: Logic}
+
+\section{Overview}
+
+This chapter covers how to work with logical statements in Lean. Mathematical statements are built from simple components using logical connectives like "and," "or," "not," "if...then," "every," and "some." Understanding these logical constructs is fundamental to mathematical reasoning in Lean.
+
+\section{3.1 Implication and the Universal Quantifier}
+
+\subsection{Universal Quantification (\lstinline{∀})}
+
+The universal quantifier \lstinline{∀} means "for all" or "for every."
+
+\textbf{Basic syntax:}
+
+\begin{lstlisting}[language=lean]
+∀ x : ℝ, 0 ≤ x → |x| = x
+\end{lstlisting}
+This reads: "for every real number x, if 0 ≤ x then the absolute value of x equals x."
+
+\textbf{Complex statements:}
+
+\begin{lstlisting}[language=lean]
+∀ x y ε : ℝ, 0 < ε → ε ≤ 1 → |x| < ε → |y| < ε → |x * y| < ε
+\end{lstlisting}
+This reads: "for every x, y, and ε, if 0 < ε ≤ 1, |x| < ε, and |y| < ε, then |x * y| < ε."
+
+\subsection{Implication (\lstinline{→})}
+
+Implications chain from right to left. The statement \lstinline{A → B → C} means "if A then (if B then C)."
+
+\subsection{Key Tactics for Universal Quantifiers and Implications}
+
+\subsubsection{1. The \lstinline{intro} Tactic}
+
+Used to prove statements with \lstinline{∀} and \lstinline{→}. It introduces variables and hypotheses.
+
+\begin{lstlisting}[language=lean]
+theorem my_lemma :
+    ∀ {x y ε : ℝ}, 0 < ε → ε ≤ 1 → |x| < ε → |y| < ε → |x * y| < ε := by
+  intro x y ε epos ele1 xlt ylt
+  -- Now we have variables x, y, ε and hypotheses epos, ele1, xlt, ylt
+  sorry
+\end{lstlisting}
+\subsubsection{2. Applying Theorems}
+
+Once you have a theorem of the form \lstinline{∀ x, P x → Q x}, you can apply it:
+
+\begin{lstlisting}[language=lean]
+#check my_lemma a b δ h₀ h₁ ha hb
+\end{lstlisting}
+\subsection{Implicit vs Explicit Arguments}
+
+\begin{itemize}
+	\item \textbf{Explicit}: \lstinline{∀ x y ε : ℝ, ...} - you must provide x, y, ε when using the theorem
+	\item \textbf{Implicit}: \lstinline{∀ {x y ε : ℝ}, ...} - Lean infers x, y, ε from context
+\end{itemize}
+
+\subsection{Working with Definitions}
+
+Definitions often hide universal quantifiers. Lean unfolds definitions when needed.
+
+\begin{lstlisting}[language=lean]
+def FnUb (f : ℝ → ℝ) (a : ℝ) : Prop :=
+  ∀ x, f x ≤ a  -- a is an upper bound for function f
+
+def FnLb (f : ℝ → ℝ) (a : ℝ) : Prop :=
+  ∀ x, a ≤ f x  -- a is a lower bound for function f
+\end{lstlisting}
+\textbf{Example proof:}
+
+\begin{lstlisting}[language=lean]
+example (hfa : FnUb f a) (hgb : FnUb g b) : FnUb (fun x ↦ f x + g x) (a + b) := by
+  intro x          -- introduces the hidden universal quantifier
+  dsimp           -- simplifies the definition
+  apply add_le_add -- applies addition inequality
+  apply hfa       -- uses hypothesis hfa
+  apply hgb       -- uses hypothesis hgb
+\end{lstlisting}
+\section{3.2 The Existential Quantifier}
+
+\subsection{Basic Syntax (\lstinline{∃})}
+
+The existential quantifier \lstinline{∃} means "there exists."
+
+\begin{lstlisting}[language=lean]
+∃ x : ℝ, 2 < x ∧ x < 3
+\end{lstlisting}
+This reads: "there exists a real number x such that 2 < x and x < 3."
+
+\subsection{Key Tactics for Existential Quantifiers}
+
+\subsubsection{1. The \lstinline{use} Tactic}
+
+To prove an existential statement, provide a witness:
+
+\begin{lstlisting}[language=lean]
+example : ∃ x : ℝ, 2 < x ∧ x < 3 := by
+  use 5/2
+  sorry  -- now prove 2 < 5/2 ∧ 5/2 < 3
+\end{lstlisting}
+\subsubsection{2. The \lstinline{obtain} or \lstinline{rcases} Tactic}
+
+To use an existential hypothesis, extract the witness:
+
+\begin{lstlisting}[language=lean]
+example (h : ∃ x : ℝ, 2 < x ∧ x < 3) : ∃ x : ℝ, x > 0 := by
+  obtain ⟨w, hw⟩ := h  -- w is the witness, hw is the property
+  use w
+  linarith [hw.left]   -- hw.left is 2 < w
+\end{lstlisting}
+\subsection{Anonymous Constructor Syntax}
+
+Alternative syntax for existential proofs:
+
+\begin{lstlisting}[language=lean]
+example : ∃ x : ℝ, 2 < x ∧ x < 3 := ⟨5/2, by norm_num, by norm_num⟩
+\end{lstlisting}
+\section{3.3 Negation}
+
+\subsection{Basic Syntax (\lstinline{¬})}
+
+Negation \lstinline{¬P} is equivalent to \lstinline{P → False}.
+
+\begin{lstlisting}[language=lean]
+¬(0 : ℝ) > 0  -- "it is not the case that 0 > 0"
+\end{lstlisting}
+\subsection{Key Tactics for Negation}
+
+\subsubsection{1. The \lstinline{by_contra} Tactic}
+
+Proof by contradiction:
+
+\begin{lstlisting}[language=lean]
+example (h : ¬¬P) : P := by
+  by_contra h'  -- assume ¬P
+  exact h h'    -- this gives a contradiction
+\end{lstlisting}
+\subsubsection{2. The \lstinline{contradiction} Tactic}
+
+When you have both \lstinline{P} and \lstinline{¬P}:
+
+\begin{lstlisting}[language=lean]
+example (h1 : P) (h2 : ¬P) : Q := by
+  contradiction
+\end{lstlisting}
+\subsubsection{3. Using \lstinline{False.elim}}
+
+From a contradiction, prove anything:
+
+\begin{lstlisting}[language=lean]
+example (h1 : P) (h2 : ¬P) : Q := by
+  exact False.elim (h2 h1)
+\end{lstlisting}
+\subsection{Classical vs Constructive Logic}
+
+Lean supports classical logic. Some useful classical principles:
+
+\begin{itemize}
+	\item \lstinline{Classical.em p}: \lstinline{p ∨ ¬p} (excluded middle)
+	\item \lstinline{Classical.by_contradiction}: proof by contradiction
+\end{itemize}
+
+\section{3.4 Conjunction and Iff}
+
+\subsection{Conjunction (\lstinline{∧})}
+
+The "and" connective combines two propositions.
+
+\begin{lstlisting}[language=lean]
+P ∧ Q  -- "P and Q"
+\end{lstlisting}
+\subsubsection{Key Tactics for Conjunction}
+
+\textbf{To prove \lstinline{P ∧ Q}:}
+
+\begin{lstlisting}[language=lean]
+example : P ∧ Q := by
+  constructor  -- creates two goals: P and Q
+  · sorry      -- prove P
+  · sorry      -- prove Q
+\end{lstlisting}
+\textbf{Alternative syntax:}
+
+\begin{lstlisting}[language=lean]
+example : P ∧ Q := ⟨proof_of_P, proof_of_Q⟩
+\end{lstlisting}
+\textbf{To use \lstinline{h : P ∧ Q}:}
+
+\begin{lstlisting}[language=lean]
+example (h : P ∧ Q) : P := h.left   -- or h.1
+example (h : P ∧ Q) : Q := h.right  -- or h.2
+\end{lstlisting}
+\textbf{Destructuring:}
+
+\begin{lstlisting}[language=lean]
+example (h : P ∧ Q) : Q ∧ P := by
+  obtain ⟨hP, hQ⟩ := h
+  exact ⟨hQ, hP⟩
+\end{lstlisting}
+\subsection{Biconditional (\lstinline{↔})}
+
+The "if and only if" connective.
+
+\begin{lstlisting}[language=lean]
+P ↔ Q  -- "P if and only if Q"
+\end{lstlisting}
+\subsubsection{Key Tactics for Biconditional}
+
+\textbf{To prove \lstinline{P ↔ Q}:}
+
+\begin{lstlisting}[language=lean]
+example : P ↔ Q := by
+  constructor
+  · intro h  -- prove P → Q
+    sorry
+  · intro h  -- prove Q → P
+    sorry
+\end{lstlisting}
+\textbf{To use \lstinline{h : P ↔ Q}:}
+
+\begin{lstlisting}[language=lean]
+example (h : P ↔ Q) (hp : P) : Q := h.mp hp     -- or h.1 hp
+example (h : P ↔ Q) (hq : Q) : P := h.mpr hq    -- or h.2 hq
+\end{lstlisting}
+\textbf{The \lstinline{rw} tactic with iff:}
+
+\begin{lstlisting}[language=lean]
+example (h : P ↔ Q) : P := by
+  rw [h]  -- changes goal from P to Q
+  sorry
+\end{lstlisting}
+\section{3.5 Disjunction}
+
+\subsection{Basic Syntax (\lstinline{∨})}
+
+The "or" connective (inclusive or).
+
+\begin{lstlisting}[language=lean]
+P ∨ Q  -- "P or Q (or both)"
+\end{lstlisting}
+\subsection{Key Tactics for Disjunction}
+
+\subsubsection{To prove \lstinline{P ∨ Q}}
+
+\textbf{Option 1: Prove P}
+
+\begin{lstlisting}[language=lean]
+example : P ∨ Q := by
+  left    -- choose to prove P
+  sorry
+\end{lstlisting}
+\textbf{Option 2: Prove Q}
+
+\begin{lstlisting}[language=lean]
+example : P ∨ Q := by
+  right   -- choose to prove Q
+  sorry
+\end{lstlisting}
+\subsubsection{To use \lstinline{h : P ∨ Q}}
+
+\textbf{Case analysis:}
+
+\begin{lstlisting}[language=lean]
+example (h : P ∨ Q) : Q ∨ P := by
+  cases h with
+  | inl hp => right; exact hp  -- case where P is true
+  | inr hq => left; exact hq   -- case where Q is true
+\end{lstlisting}
+\textbf{Alternative syntax with \lstinline{rcases}:}
+
+\begin{lstlisting}[language=lean]
+example (h : P ∨ Q) : Q ∨ P := by
+  rcases h with hp | hq
+  · right; exact hp
+  · left; exact hq
+\end{lstlisting}
+\subsection{Classical Reasoning Patterns}
+
+\begin{lstlisting}[language=lean]
+example : ¬(P ∧ Q) ↔ ¬P ∨ ¬Q := by
+  constructor
+  · intro h
+    by_cases hp : P
+    · right
+      intro hq
+      exact h ⟨hp, hq⟩
+    · left; exact hp
+  · intro h hpq
+    cases h with
+    | inl hnp => exact hnp hpq.left
+    | inr hnq => exact hnq hpq.right
+\end{lstlisting}
+\section{3.6 Sequences and Convergence}
+
+\subsection{Defining Convergence}
+
+\begin{lstlisting}[language=lean]
+def ConvergesTo (s : ℕ → ℝ) (a : ℝ) : Prop :=
+  ∀ ε > 0, ∃ N, ∀ n ≥ N, |s n - a| < ε
+\end{lstlisting}
+This combines multiple logical constructs:
+
+\begin{itemize}
+	\item Universal quantification over ε
+	\item Existential quantification over N
+	\item Universal quantification over n
+	\item Implications and inequalities
+\end{itemize}
+
+\subsection{Example Proofs}
+
+\textbf{Constant sequence convergence:}
+
+\begin{lstlisting}[language=lean]
+theorem convergesTo_const (a : ℝ) : ConvergesTo (fun x : ℕ ↦ a) a := by
+  intro ε εpos          -- introduce ε and hypothesis ε > 0
+  use 0                 -- choose N = 0
+  intro n nge           -- introduce n and hypothesis n ≥ 0
+  rw [sub_self, abs_zero]  -- |a - a| = 0
+  apply εpos            -- 0 < ε
+\end{lstlisting}
+\textbf{Sum of convergent sequences:}
+
+\begin{lstlisting}[language=lean]
+theorem convergesTo_add {s t : ℕ → ℝ} {a b : ℝ}
+      (cs : ConvergesTo s a) (ct : ConvergesTo t b) :
+    ConvergesTo (fun n ↦ s n + t n) (a + b) := by
+  intro ε εpos
+  dsimp
+  have ε2pos : 0 < ε / 2 := by linarith
+  rcases cs (ε / 2) ε2pos with ⟨Ns, hs⟩  -- extract N for s
+  rcases ct (ε / 2) ε2pos with ⟨Nt, ht⟩  -- extract N for t
+  use max Ns Nt        -- choose N = max(Ns, Nt)
+  -- continue proof using triangle inequality
+  sorry
+\end{lstlisting}
+\section{Essential Tactics Summary}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|}
+		\hline
+		Tactic & Used For & Example \\
+		\hline
+		\lstinline{intro} & Introducing variables/hypotheses & \lstinline{intro x h} \\
+		\hline
+		\lstinline{apply} & Applying theorems & \lstinline{apply theorem_name} \\
+		\hline
+		\lstinline{exact} & Providing exact proof & \lstinline{exact h} \\
+		\hline
+		\lstinline{use} & Providing existential witness & \lstinline{use 5} \\
+		\hline
+		\lstinline{obtain}/\lstinline{rcases} & Destructuring & \lstinline{obtain ⟨x, h⟩ := hyp} \\
+		\hline
+		\lstinline{constructor} & Proving conjunctions/iffs & \lstinline{constructor} \\
+		\hline
+		\lstinline{left}/\lstinline{right} & Proving disjunctions & \lstinline{left} \\
+		\hline
+		\lstinline{cases} & Case analysis & `cases h with & inl => & inr =>` \\
+		\hline
+		\lstinline{by_contra} & Proof by contradiction & \lstinline{by_contra h} \\
+		\hline
+		\lstinline{contradiction} & Using contradictory hypotheses & \lstinline{contradiction} \\
+		\hline
+		\lstinline{rw} & Rewriting with equations/iffs & \lstinline{rw [theorem_name]} \\
+		\hline
+		\lstinline{linarith} & Linear arithmetic & \lstinline{linarith} \\
+		\hline
+		\lstinline{norm_num} & Numerical computation & \lstinline{norm_num} \\
+		\hline
+		\lstinline{dsimp} & Definitional simplification & \lstinline{dsimp} \\
+		\hline
+		\lstinline{simp} & Simplification & \lstinline{simp} \\
+		\hline
+	\end{tabular}
+\end{table}
+\section{Common Patterns}
+
+\subsection{Proof by Cases}
+
+\begin{lstlisting}[language=lean]
+by_cases h : P
+· -- case where P is true
+  sorry
+· -- case where P is false (¬P)
+  sorry
+\end{lstlisting}
+\subsection{Double Negation}
+
+\begin{lstlisting}[language=lean]
+example : ¬¬P → P := by
+  intro h
+  by_contra hnp
+  exact h hnp
+\end{lstlisting}
+\subsection{Contraposition}
+
+\begin{lstlisting}[language=lean]
+example : (P → Q) → (¬Q → ¬P) := by
+  intro h hnq hp
+  exact hnq (h hp)
+\end{lstlisting}
+This chapter provides the foundation for logical reasoning in Lean, essential for all mathematical proofs.
+
+
+\end{document}

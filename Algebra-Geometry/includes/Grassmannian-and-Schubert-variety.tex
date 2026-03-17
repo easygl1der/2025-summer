@@ -1,0 +1,767 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Grassmannians, Schubert Varieties, Flag Varieties, and Schubert Calculus}
+
+\subsection{Why study Grassmannian?}
+
+\begin{definition}[Grassmannian $\mathrm{Gr}(k, n)$]
+The \textbf{Grassmannian} $\mathrm{Gr}(k, n)$ is the set of all $k$-dimensional linear subspaces of an $n$-dimensional vector space $\mathbb{F}^n$ (where $\mathbb{F}$ is usually $\mathbb{R}$ or $\mathbb{C}$).
+Formally:
+\[
+\mathrm{Gr}(k, n) = \{ \text{\(k\)-dimensional subspaces of } \mathbb{F}^n \}.
+\]	\begin{itemize}
+		\item Example: $\mathrm{Gr}(1, n)$ is the \textbf{projective space} $\mathbb{P}^{n-1}$, since a 1D subspace is just a line through the origin.
+		\item Example: $\mathrm{Gr}(n-1, n)$ can be thought of as the set of hyperplanes through the origin.
+	\end{itemize}
+The Grassmannian is not just a set — it is a \textbf{smooth manifold} (and even an \textbf{algebraic variety} when $\mathbb{F} = \mathbb{C}$).
+Its \textbf{dimension} is:
+\[
+\dim_{\mathbb{F}} \mathrm{Gr}(k, n) = k(n-k).
+\]
+\end{definition}
+Imagine $\mathbb{R}^n$. You can look at:
+
+\begin{itemize}
+	\item Points ($k=0$)
+	\item Lines through the origin ($k=1$)
+	\item Planes through the origin ($k=2$)
+	\item etc.
+\end{itemize}
+
+The Grassmannian $\mathrm{Gr}(k, n)$ is like a "space whose points are subspaces" — you can \textbf{move smoothly from one subspace to another}. This lets us treat "families of subspaces" as geometric objects themselves.
+
+A key idea:
+The Grassmannian is \textbf{homogeneous}:
+\[
+\mathrm{Gr}(k, n) \cong \frac{\mathrm{GL}(n, \mathbb{F})}{P},
+\]
+where $P$ is a \textbf{parabolic subgroup} that fixes a chosen $k$-dimensional subspace. This shows that all $k$-planes look "the same" up to a linear transformation.
+
+When $\mathbb{F} = \mathbb{C}$, $\mathrm{Gr}(k, n)$ can be embedded into projective space via \textbf{Plücker coordinates}:
+\[
+V \in \mathrm{Gr}(k, n) \quad \mapsto \quad v_1 \wedge \cdots \wedge v_k \in \mathbb{P}\big(\Lambda^k \mathbb{C}^n\big),
+\]
+where $\{v_i\}$ is a basis for $V$.
+
+The image is cut out by \textbf{quadratic Plücker relations}, making the Grassmannian a \textbf{projective algebraic variety}.
+
+This algebraic viewpoint is key in \textbf{Schubert calculus}, where we study how subspaces intersect.
+
+\subsubsection{\textbf{Linear Algebra \& Geometry}}
+
+\begin{itemize}
+	\item \textbf{Parametrizing solutions}: If you have a family of subspaces (e.g., solution spaces to a system of equations), they can be described as points in a Grassmannian.
+	\item \textbf{Change of basis}: Studying all $k$-subspaces is like studying all possible column spaces of $n \times k$ matrices up to linear transformations.
+\end{itemize}
+
+\subsubsection{\textbf{Algebraic Geometry}}
+
+\begin{itemize}
+	\item Grassmannians are \textbf{building blocks}: Many moduli spaces can be constructed from them.
+	\item \textbf{Schubert varieties} inside Grassmannians help compute intersection numbers (enumerative geometry problems like “how many lines in $\mathbb{P}^3$ meet four given lines?”).
+\end{itemize}
+
+\subsubsection{\textbf{Topology \& Characteristic Classes}}
+
+\begin{itemize}
+	\item Grassmannians are classifying spaces for vector bundles:
+\end{itemize}
+\[
+\mathrm{Gr}_k(\mathbb{R}^\infty) \quad\text{classifies rank-\(k\) real vector bundles}.
+\]
+\begin{itemize}
+	\item Their cohomology ring is generated by \textbf{Chern/Schubert classes}, essential in topology and geometry.
+\end{itemize}
+
+\subsubsection{\textbf{Representation Theory}}
+
+\begin{itemize}
+	\item As homogeneous spaces $G/P$, Grassmannians are examples of \textbf{flag varieties}, and their geometry reflects the structure of Lie groups and Lie algebras.
+\end{itemize}
+
+\subsubsection{\textbf{Physics}}
+
+\begin{itemize}
+	\item In \textbf{quantum field theory} and \textbf{string theory}, Grassmannians appear in:
+	\begin{itemize}
+		\item \textbf{Gauge theory}: Moduli of certain field configurations are often Grassmannians or their generalizations.
+		\item \textbf{Twistor theory}: The "momentum space" in some scattering amplitude formulations is a Grassmannian.
+	\end{itemize}
+\end{itemize}
+
+\subsubsection{\textbf{Applied Mathematics}}
+
+\begin{itemize}
+	\item \textbf{Statistics \& Data Science}: Subspaces model principal components in PCA; the set of all $k$-dimensional subspaces is the search space in \textbf{subspace methods}.
+	\item \textbf{Signal Processing}: In array processing and MIMO systems, signals lie in subspaces, and the Grassmannian provides a natural search domain.
+\end{itemize}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Aspect & Why it matters \\
+		\hline
+		\textbf{Geometry} & Smooth, compact, homogeneous manifold parametrizing subspaces \\
+		\hline
+		\textbf{Algebra} & Projective variety with explicit Plücker equations \\
+		\hline
+		\textbf{Topology} & Classifying space for vector bundles \\
+		\hline
+		\textbf{Combinatorics} & Schubert calculus counts geometric configurations \\
+		\hline
+		\textbf{Applications} & From quantum physics to machine learning \\
+		\hline
+	\end{tabular}
+\end{table}
+\subsection{Why study Grassmannian?}
+
+\begin{definition}[Grassmannian $\mathrm{Gr}(k, n)$]
+The \textbf{Grassmannian} $\mathrm{Gr}(k, n)$ is the set of all $k$-dimensional linear subspaces of an $n$-dimensional vector space $\mathbb{F}^n$ (where $\mathbb{F}$ is usually $\mathbb{R}$ or $\mathbb{C}$).
+Formally:
+\[
+\mathrm{Gr}(k, n) = \{ \text{\(k\)-dimensional subspaces of } \mathbb{F}^n \}.
+\]	\begin{itemize}
+		\item Example: $\mathrm{Gr}(1, n)$ is the \textbf{projective space} $\mathbb{P}^{n-1}$, since a 1D subspace is just a line through the origin.
+		\item Example: $\mathrm{Gr}(n-1, n)$ can be thought of as the set of hyperplanes through the origin.
+	\end{itemize}
+The Grassmannian is not just a set — it is a \textbf{smooth manifold} (and even an \textbf{algebraic variety} when $\mathbb{F} = \mathbb{C}$).
+Its \textbf{dimension} is:
+\[
+\dim_{\mathbb{F}} \mathrm{Gr}(k, n) = k(n-k).
+\]
+\end{definition}
+Imagine $\mathbb{R}^n$. You can look at:
+
+\begin{itemize}
+	\item Points ($k=0$)
+	\item Lines through the origin ($k=1$)
+	\item Planes through the origin ($k=2$)
+	\item etc.
+\end{itemize}
+
+The Grassmannian \$\textbackslash{}math...
+
+\subsection{Schubert varieties}
+
+\subsubsection{1. \textbf{What is a Schubert variety?}}
+
+Inside the Grassmannian $\mathrm{Gr}(k,n)$, a \textbf{Schubert variety} is a subset defined by \textbf{linear incidence conditions} with respect to a fixed \textbf{flag} of subspaces
+\[
+0 = F_0 \subset F_1 \subset F_2 \subset \cdots \subset F_n = \mathbb{F}^n,
+\]
+where $\dim F_i = i$.
+
+For example, in $\mathrm{Gr}(2,4)$, a Schubert variety might be:
+
+\begin{note}
+The set of 2-planes $V$ that intersect a fixed 2-plane $F_2$ in at least a line.
+\end{note}
+\subsubsection{2. \textbf{Geometric Motivation}}
+
+The real motivation comes from \textbf{enumerative geometry}:
+
+\begin{itemize}
+	\item Classical 19th-century geometers asked:
+\begin{note}
+“How many lines in $\mathbb{P}^3$ meet four given lines in general position?”
+\end{note}	\item This problem can be rephrased as:
+\begin{note}
+“Count the intersection points of certain Schubert varieties in $\mathrm{Gr}(1,4)$.”
+\end{note}\end{itemize}
+
+\textbf{Why?}
+Each incidence condition (“line meets a given line”) defines a Schubert variety. Intersecting them corresponds to imposing all the conditions at once, and counting intersection points solves the original problem.
+
+\subsubsection{3. \textbf{Why They’re Useful}}
+
+Schubert varieties give us:
+
+\begin{itemize}
+	\item \textbf{A combinatorial handle} on the Grassmannian’s geometry:
+They are indexed by combinatorial objects (like partitions or Young diagrams), so geometry problems become combinatorics problems.
+	\item \textbf{A basis for cohomology/Chow rings}:
+The classes $[X_\lambda]$ of Schubert varieties form a basis for $H^*(\mathrm{Gr}(k,n))$. This means \textit{any} intersection problem in the Grassmannian can be reduced to multiplying Schubert classes and reading off coefficients.
+	\item \textbf{Natural subvarieties}:
+Many geometric constraints are \textit{automatically} Schubert conditions when expressed in a fixed reference flag.
+\end{itemize}
+
+\subsubsection{4. \textbf{Broader Motivation}}
+
+\paragraph{1. \textbf{Enumerative Geometry}}
+
+\begin{itemize}
+	\item All “counting subspaces with incidence conditions” problems live in the world of Schubert calculus.
+	\item Famous example:
+	\begin{itemize}
+		\item How many 2-planes in $\mathbb{P}^5$ meet 9 general 3-planes?
+→ This is the coefficient of the top class in a product of Schubert classes.
+	\end{itemize}
+\end{itemize}
+
+\paragraph{2. \textbf{Representation Theory}}
+
+\begin{itemize}
+	\item Schubert varieties are \textbf{orbit closures} of a Borel subgroup in a flag variety $G/B$.
+	\item Their geometry encodes \textbf{weights, Weyl groups, and Bruhat order} — central in Lie theory.
+\end{itemize}
+
+\paragraph{3. \textbf{Algebraic Geometry}}
+
+\begin{itemize}
+	\item They are typically singular, but with nice \textbf{cell decompositions} (Bruhat cells), which make them a perfect testing ground for singularity theory, intersection theory, and equivariant cohomology.
+\end{itemize}
+
+\paragraph{4. \textbf{Combinatorics}}
+
+\begin{itemize}
+	\item Multiplication of Schubert classes corresponds to \textbf{Littlewood–Richardson coefficients} — fundamental in symmetric function theory and Young tableaux combinatorics.
+\end{itemize}
+
+\paragraph{5. \textbf{Physics}}
+
+\begin{itemize}
+	\item Appear in \textbf{string theory} and \textbf{scattering amplitudes}: The positive Grassmannian (a subset where certain Plücker coordinates are positive) is built from Schubert cells.
+\end{itemize}
+
+\subsubsection{5. \textbf{Why Study Them? — The Core Reasons}}
+
+\begin{enumerate}
+	\item They are the “coordinate charts” for enumerative problems in the Grassmannian.
+	\item Their cohomology classes form a canonical basis for intersection theory.
+	\item They link geometry, algebra, and combinatorics in a highly structured way.
+	\item They are universal examples of orbit closures, hence key in representation theory.
+	\item They provide computable, exact answers to problems that would otherwise be messy geometric puzzles.
+\end{enumerate}
+
+If you think of the Grassmannian as the \textit{stage}, then \textbf{Schubert varieties are the props} we use to set up very precise geometric conditions. Studying their intersections is like running the “experiments” of enumerative geometry — and Schubert calculus is the toolkit that makes sure we get the exact count every time.
+
+\paragraph{An example of application of Schubert varieties}
+
+\textbf{Problem}: How many lines in projective 3-space $\mathbb{P}^3$ meet four given lines in general position?
+
+\subparagraph{1. Rewriting the problem in Grassmannian language}
+
+A line in $\mathbb{P}^3$ is the same thing as a \textbf{2-dimensional subspace} of $\mathbb{C}^4$ (if we work over $\mathbb{C}$ to avoid degeneracy issues).
+
+So, the space of all lines in $\mathbb{P}^3$ is:
+\[
+\mathrm{Gr}(1,3) \quad \text{(but in projective indexing that’s usually written as \(\mathrm{Gr}(2,4)\))}
+\]
+This Grassmannian has complex dimension:
+\[
+\dim \mathrm{Gr}(2,4) = 2(4 - 2) = 4
+\]
+\subparagraph{2. The incidence condition}
+
+We fix one line $\ell \subset \mathbb{P}^3$.
+
+\textbf{Condition}: “Line $L$ meets $\ell$” means that:
+
+\begin{itemize}
+	\item The corresponding 2-plane $V_L$ in $\mathbb{C}^4$ has \textbf{at least} a 1-dimensional intersection with $V_\ell$ (the 2-plane for $\ell$).
+\end{itemize}
+
+This is exactly a \textbf{Schubert variety} in $\mathrm{Gr}(2,4)$:
+\[
+\Sigma_1 = \{ V \in \mathrm{Gr}(2,4) \mid \dim(V \cap F_2) \ge 1 \}
+\]
+for a certain 2-plane $F_2$ coming from $\ell$.
+
+\begin{itemize}
+	\item Geometrically: It’s the set of all lines in $\mathbb{P}^3$ that meet a fixed line.
+	\item Algebraically: $\Sigma_1$ is a \textbf{codimension-1 Schubert variety} in $\mathrm{Gr}(2,4)$.
+\end{itemize}
+
+\subparagraph{3. Stacking the conditions}
+
+We now have \textbf{four general lines} $\ell_1, \ell_2, \ell_3, \ell_4$. Each condition “meets $\ell_i$” corresponds to a \textbf{different Schubert variety} $\Sigma_1^{(i)}$ of codimension 1.
+
+The problem reduces to:
+\[
+\Sigma_1^{(1)} \cap \Sigma_1^{(2)} \cap \Sigma_1^{(3)} \cap \Sigma_1^{(4)} \quad \text{in } \mathrm{Gr}(2,4)
+\]
+\begin{itemize}
+	\item The Grassmannian has \textbf{dimension 4}.
+	\item Each $\Sigma_1^{(i)}$ has \textbf{codimension 1}.
+	\item Intersecting 4 of them should give us a \textbf{0-dimensional} set — i.e., a finite number of points.
+\end{itemize}
+
+\subparagraph{4. Counting via Schubert calculus}
+
+In the cohomology ring $H^*(\mathrm{Gr}(2,4))$, the class $[\Sigma_1]$ is usually denoted $\sigma_1$.
+
+Schubert calculus tells us:
+\[
+\sigma_1^4 = 2 \cdot [\text{pt}]
+\]
+where $[\text{pt}]$ is the fundamental class of a point.
+
+This means:
+\[
+\# \left( \Sigma_1^{(1)} \cap \Sigma_1^{(2)} \cap \Sigma_1^{(3)} \cap \Sigma_1^{(4)} \right) = 2
+\]
+\subparagraph{5. Interpretation}
+
+We’ve just proven:
+
+\begin{note}
+There are \textbf{exactly two} lines in $\mathbb{P}^3$ that meet four general lines in space.
+\end{note}
+This is a \textbf{nontrivial enumerative fact} — you could try to solve it purely with coordinate geometry, but it’s messy. With Schubert varieties, it’s a clean calculation.
+
+\subparagraph{6. Moral}
+
+This example encapsulates \textbf{why we study Schubert varieties}:
+
+\begin{enumerate}
+	\item They \textbf{encode geometric constraints} (like “meets a line”) in a Grassmannian.
+	\item Their intersection theory \textbf{counts solutions} to incidence problems.
+	\item The combinatorics of Schubert classes gives the count without having to draw messy diagrams or solve big systems of equations.
+\end{enumerate}
+
+\subsection{Flag varieties}
+
+\textbf{A flag variety} is the geometric space that parametrizes \textbf{flags} — i.e., nested sequences of subspaces — of a finite-dimensional vector space.
+
+\subsubsection{1. Definition}
+
+Let $V$ be an $n$-dimensional vector space over $\mathbb{F}$ ($\mathbb{R}$ or $\mathbb{C}$).
+A \textbf{full flag} is a sequence:
+\[
+0 \subset V_1 \subset V_2 \subset \cdots \subset V_{n-1} \subset V
+\]
+where:
+\[
+\dim V_i = i.
+\]
+The \textbf{full flag variety} $\mathcal{F}\ell(n)$ is:
+\[
+\mathcal{F}\ell(n) = \{ \text{all full flags in } V \}.
+\]
+You can also have \textbf{partial flag varieties} where you only specify certain dimensions:
+\[
+0 \subset V_{k_1} \subset V_{k_2} \subset \cdots \subset V_{k_r} \subset V, \quad 0 < k_1 < k_2 < \cdots < k_r < n.
+\]
+Example: The Grassmannian $\mathrm{Gr}(k,n)$ is a partial flag variety with just one subspace.
+
+\subsubsection{2. Group-theoretic viewpoint}
+
+If $G = \mathrm{GL}_n(\mathbb{F})$, then:
+
+\begin{itemize}
+	\item A full flag is the orbit of a standard flag under $G$.
+	\item The stabilizer of a flag is a \textbf{Borel subgroup} $B$ (upper triangular matrices in the standard basis).
+	\item Thus:
+\end{itemize}
+\[
+\mathcal{F}\ell(n) \cong G / B.
+\]
+More generally, partial flag varieties are:
+\[
+G / P,
+\]
+where $P$ is a \textbf{parabolic subgroup}.
+
+\subsubsection{3. Geometry}
+
+\begin{itemize}
+	\item The flag variety is a \textbf{smooth projective variety}.
+	\item It has a cell decomposition into \textbf{Schubert cells} indexed by permutations (for full flags) or by certain combinatorial data (for partial flags).
+	\item These Schubert cells glue into \textbf{Schubert varieties}, which we study for intersection theory.
+\end{itemize}
+
+\subsubsection{4. Why It’s Important}
+
+\begin{itemize}
+	\item \textbf{Unification}: Many important varieties in algebraic geometry (Grassmannians, quadric hypersurfaces, etc.) are special cases of $G/P$ flag varieties.
+	\item \textbf{Representation theory}: Their cohomology and geometry encode information about representations of Lie groups and Lie algebras.
+	\item \textbf{Combinatorics}: The Bruhat decomposition of $G/B$ is reflected in the Schubert cell decomposition.
+	\item \textbf{Physics}: Appear in gauge theory moduli spaces and in string theory compactifications.
+\end{itemize}
+
+\subsubsection{5. Quick Examples}
+
+\begin{itemize}
+	\item $\mathrm{Gr}(k,n)$ — one-step partial flag variety.
+	\item Full flags in $\mathbb{C}^3$: $0 \subset L \subset P \subset \mathbb{C}^3$
+where $L$ is a line, $P$ is a plane containing it.
+\end{itemize}
+
+\subsection{What is Schubert calculus?}
+
+Schubert calculus is the \textbf{geometry–algebra dictionary} for answering incidence questions in Grassmannians and more general flag varieties.
+
+\subsubsection{1. \textbf{The problem it solves}}
+
+Imagine a classic enumerative geometry problem:
+
+\begin{note}
+How many geometric objects (lines, planes, etc.) satisfy a set of incidence conditions (like “passes through this point” or “meets that line”)?
+\end{note}
+The \textbf{incidence conditions} are often described by \textbf{Schubert varieties} in a Grassmannian or flag variety.
+Schubert calculus gives you an \textbf{algebraic toolkit} to:
+
+\begin{enumerate}
+	\item Represent these conditions as elements of the cohomology (or Chow) ring.
+	\item Multiply them in that ring.
+	\item Read off the number of solutions from the coefficient of the point class.
+\end{enumerate}
+
+\subsubsection{2. \textbf{The setup}}
+
+\begin{itemize}
+	\item \textbf{Space:} Start with a flag variety $G/P$ — for Grassmannians $\mathrm{Gr}(k,n)$, $G = \mathrm{GL}_n$ and $P$ is a parabolic subgroup.
+	\item \textbf{Flags:} Fix a reference flag $F_\bullet$ in $\mathbb{C}^n$.
+	\item \textbf{Schubert variety:} For a combinatorial label $\lambda$ (a Young diagram, permutation, or sequence of integers), define:
+\end{itemize}
+\[
+\Omega_\lambda(F_\bullet) \subset \mathrm{Gr}(k,n)
+\]
+= subvariety of all $k$-planes that meet the steps of $F_\bullet$ in a certain way.
+
+\begin{itemize}
+	\item \textbf{Codimension:} $\Omega_\lambda$ has a well-defined codimension $|\lambda|$.
+\end{itemize}
+
+\subsubsection{3. \textbf{The algebra side}}
+
+\begin{itemize}
+	\item In cohomology $H^*(\mathrm{Gr}(k,n))$, the class $[\Omega_\lambda]$ is denoted $\sigma_\lambda$ and is called a \textbf{Schubert class}.
+	\item These $\sigma_\lambda$ form an \textbf{additive basis} for the cohomology ring.
+	\item Multiplication:
+\end{itemize}
+\[
+\sigma_\lambda \cdot \sigma_\mu = \sum_{\nu} c_{\lambda,\mu}^\nu \, \sigma_\nu
+\]
+where $c_{\lambda,\mu}^\nu$ are the \textbf{structure constants} (intersection numbers).
+
+\begin{itemize}
+	\item The \textbf{top-degree} class corresponds to a point; if $|\lambda| + |\mu| = \dim\mathrm{Gr}(k,n)$, then:
+\end{itemize}
+\[
+\sigma_\lambda \cdot \sigma_\mu = (\text{integer}) \cdot [\text{pt}]
+\]
+and that integer is the \textbf{number of solutions}.
+
+\subsubsection{4. \textbf{Computational rules}}
+
+Historically, Schubert calculus came with \textbf{puzzle pieces}:
+
+\begin{itemize}
+	\item \textbf{Pieri’s formula}: Multiplication by a special Schubert class corresponding to a single row.
+	\item \textbf{Giambelli’s formula}: Express any Schubert class as a determinant in special classes.
+	\item \textbf{Littlewood–Richardson rule}: Combinatorial rule for $c_{\lambda,\mu}^\nu$ via tableaux.
+\end{itemize}
+
+\subsubsection{5. \textbf{Example}}
+
+From the earlier Grassmannian example ($\mathrm{Gr}(2,4)$):
+
+\begin{itemize}
+	\item “Line meets a fixed line” = $\sigma_1$ (codim 1).
+	\item Four such conditions: $\sigma_1^4$.
+	\item Schubert calculus says $\sigma_1^4 = 2[\text{pt}]$ → there are \textbf{2 lines} meeting four general lines in $\mathbb{P}^3$.
+\end{itemize}
+
+\subsubsection{6. \textbf{Why it’s powerful}}
+
+\begin{itemize}
+	\item \textbf{Enumerative geometry}: Counts curves, lines, or higher-dimensional planes under constraints.
+	\item \textbf{Representation theory}: The cohomology ring structure constants match tensor product multiplicities of $GL_n$ representations.
+	\item \textbf{Combinatorics}: Links geometry to Young tableaux, symmetric polynomials, and the symmetric group.
+	\item \textbf{Physics}: Appears in gauge theory, quantum cohomology, and mirror symmetry.
+\end{itemize}
+
+\subsection{Hodge numbers of Grassmannians}
+
+\subsubsection{Quick summary (the punchline)}
+
+For the complex Grassmannian $\mathrm{Gr}(k,n)$ (a compact complex projective homogeneous manifold):
+
+\begin{itemize}
+	\item $H^{p,q}(\mathrm{Gr}(k,n)) = 0$ whenever $p\neq q$.
+	\item All nonzero Hodge groups are on the diagonal: $H^{p,p}$.
+	\item The Hodge number $h^{p,p} = \dim H^{p,p}(\mathrm{Gr}(k,n))$ equals the number of Schubert classes (equivalently Young diagrams / partitions) of total size $p$ that fit in a $k\times(n-k)$ rectangle.
+	\item Equivalently the Poincaré polynomial is the Gaussian binomial (q-binomial) coefficient:
+\end{itemize}
+\[
+P_t(\mathrm{Gr}(k,n))=\sum_{p\ge0} b_{2p} t^{p}=\binom{n}{k}_t,
+\]
+and $h^{p,p}=b_{2p}$ (the coefficient of $t^p$).
+
+Why this is so and how to actually compute those numbers below.
+
+\subsubsection{Why \texorpdfstring{$H^{p,q}$}{H^p,q} vanishes off the diagonal}
+
+Two quick geometric reasons:
+
+\begin{enumerate}
+	\item \textbf{Cell decomposition by Schubert cells.}
+$\mathrm{Gr}(k,n)$ admits a Bruhat (Schubert) cell decomposition into complex cells $\mathbb{C}^m$. Every cell has \textit{even real} dimension, so the ordinary cohomology is concentrated in even degrees: $H^{\text{odd}}=0$. For a compact Kähler manifold with only even-degree Betti numbers, the Hodge decomposition forces $H^{p,q}=0$ for $p\ne q$.
+	\item \textbf{Homogeneous / Hermitian symmetric structure.}
+Grassmannians are projective homogeneous spaces $G/P$; they are Kähler and in fact have Hodge structure of type $(p,p)$ only (a standard fact for rational homogeneous varieties like Grassmannians).
+\end{enumerate}
+
+Combining these yields the diagonal-only Hodge numbers.
+
+\subsubsection{How to compute the diagonal Hodge numbers \texorpdfstring{$h^{p,p}$}{h^p,p}}
+
+Here are practical, equivalent approaches.
+
+\paragraph{1 — Count Schubert classes (combinatorial)}
+
+Schubert classes $\sigma_\lambda$ form an additive basis of $H^*(\mathrm{Gr}(k,n))$. They are indexed by partitions (Young diagrams) $\lambda$ whose Ferrers diagram fits inside a $k\times (n-k)$ rectangle. The cohomological degree of $\sigma_\lambda$ is $2|\lambda|$ where $|\lambda|$ is the number of boxes.
+
+Thus
+\[
+h^{p,p} = \#\{\lambda \mid |\lambda|=p,\ \lambda\text{ fits in }k\times(n-k)\}.
+\]
+This is the most direct and combinatorial computation.
+
+\paragraph{2 — Use the Gaussian binomial coefficient (Poincaré polynomial)}
+
+The Poincaré polynomial (graded by complex degree) is the q-binomial:
+\[
+\sum_{p\ge0} h^{p,p} \, t^p \;=\; \binom{n}{k}_t
+\;=\; \frac{(1-t^n)(1-t^{n-1})\cdots(1-t^{n-k+1})}{(1-t^k)(1-t^{k-1})\cdots(1-t)}.
+\]
+Expand this polynomial in $t$; the coefficient of $t^p$ is $h^{p,p}$.
+
+\paragraph{3 — Schur / Chern-class algebra (Giambelli / Schubert calculus)}
+
+Present the cohomology ring in generators (Chern classes of the tautological bundle or quotient bundle) with relations; use Giambelli determinants to express Schubert classes as Schur polynomials. Counting basis elements of degree $2p$ gives $h^{p,p}$.
+
+This is the route you take when you want multiplication rules, not only dimensions.
+
+\paragraph{4 — Representation-theoretic / Borel methods}
+
+Use $G/P$ representation theory:
+
+\begin{itemize}
+	\item Bott’s theorem / Borel-Weil-Bott compute cohomology of line bundles.
+	\item The decomposition of global sections into irreducible representations explains the grading and yields Betti/Hodge numbers indirectly.
+\end{itemize}
+
+This approach is more conceptual and useful when connecting to representation theory.
+
+\paragraph{5 — Computational tools}
+
+For explicit numbers one can:
+
+\begin{itemize}
+	\item Enumerate partitions fitting in the box (straightforward programmatically).
+	\item Expand the q-binomial coefficient with symbolic algebra (Sage, Mathematica, etc.).
+	\item Use known combinatorial formulae (hook-length, etc., in related contexts).
+\end{itemize}
+
+\paragraph{Worked example: \texorpdfstring{$\mathrm{Gr}(2,4)$}{Gr(2,4)}}
+
+Here $k=2,n=4$. The rectangle is $2\times 2$. Partitions that fit in $2\times2$ and their sizes:
+
+\begin{itemize}
+	\item $\varnothing$ — size 0
+	\item $(1)$ — size 1
+	\item $(2)$ and $(1,1)$ — size 2 (two shapes)
+	\item $(2,1)$ — size 3
+	\item $(2,2)$ — size 4
+\end{itemize}
+
+Count per $p$:
+
+\begin{itemize}
+	\item $p=0:\ h^{0,0}=1$
+	\item $p=1:\ h^{1,1}=1$
+	\item $p=2:\ h^{2,2}=2$
+	\item $p=3:\ h^{3,3}=1$
+	\item $p=4:\ h^{4,4}=1$
+\end{itemize}
+
+Poincaré polynomial (complex-degree variable $t$):
+\[
+1 + t + 2t^2 + t^3 + t^4 = \binom{4}{2}_t.
+\]
+So the only nonzero Hodge numbers are those diagonal entries, matching the combinatorial count.
+
+\paragraph{Practical recommendations}
+
+\begin{itemize}
+	\item If you only want the Hodge numbers: use the q-binomial or count partitions fitting in $k\times(n-k)$.
+	\item If you want the ring structure (intersection products): learn Schubert calculus (Giambelli, Pieri, Littlewood–Richardson).
+	\item If you want Hodge-theoretic or representation-theoretic interpretations: study $G/P$ geometry and Borel–Weil–Bott.
+\end{itemize}
+
+
+\subsection{Cell decomposition}
+
+A \textbf{cell decomposition} (also called a \textbf{CW decomposition} in topology) is a way of building a space by gluing together basic building blocks called \textbf{cells} — spaces homeomorphic to open balls of various dimensions.
+
+In algebraic geometry and Lie theory, when we say a variety has a \textbf{cell decomposition}, we usually mean it can be written as a \textit{disjoint union} of pieces each isomorphic (as a variety) to an affine space $\mathbb{C}^m$.
+
+\subsubsection{1. \textbf{Basic Idea}}
+
+\begin{itemize}
+	\item \textbf{0-cells}: points (homeomorphic to $\mathbb{R}^0$ or $\mathbb{C}^0$).
+	\item \textbf{1-cells}: open intervals ($\mathbb{R}^1$).
+	\item \textbf{2-cells}: open disks ($\mathbb{R}^2$), and so on.
+	\item In complex algebraic geometry: we talk about $\mathbb{C}^m$ as the building blocks (even real dimension $2m$).
+\end{itemize}
+
+If a variety $X$ has a cell decomposition, it looks like:
+\[
+X = \bigsqcup_{\alpha} C_\alpha
+\]
+where each $C_\alpha \cong \mathbb{C}^{d_\alpha}$ is a \textbf{cell}.
+
+\subsubsection{2. \textbf{Why It’s Useful}}
+
+\begin{itemize}
+	\item \textbf{Computing topology}:
+Each cell contributes one generator to the homology in its dimension; there’s no complicated attaching map in this situation (for smooth projective varieties with such decompositions).
+	\item \textbf{Betti numbers}:
+If $C_\alpha$ has complex dimension $p$, it contributes to $H^{2p}$ (real degree $2p$), and all odd cohomology vanishes.
+	\item \textbf{Intersection theory}:
+For homogeneous spaces like Grassmannians, the cells correspond to \textbf{Schubert cells}, and their closures are \textbf{Schubert varieties} — the natural generators of the cohomology ring.
+\end{itemize}
+
+\subsubsection{3. \textbf{Example: Projective space}}
+
+$\mathbb{CP}^n$ has a cell decomposition:
+\[
+\mathbb{CP}^n = \mathbb{C}^0 \;\sqcup\; \mathbb{C}^1 \;\sqcup\; \mathbb{C}^2 \;\sqcup\; \cdots \;\sqcup\; \mathbb{C}^n
+\]
+given by:
+\[
+[z_0: \dots : z_n], \quad \text{cell of dim }m = \{ [1: z_1 : \dots : z_m : 0 : \dots : 0] \}
+\]
+So $H^{p,q}=0$ unless $p=q$, and $h^{p,p}=1$ for $0 \le p \le n$.
+
+\subsubsection{4. \textbf{Example: Grassmannian \texorpdfstring{$\mathrm{Gr}(2,4)$}{Gr(2,4)}}}
+
+The \textbf{Schubert cells} are:
+
+\begin{itemize}
+	\item $\mathbb{C}^0$ (dimension 0)
+	\item $\mathbb{C}^1$ (dim 1)
+	\item $\mathbb{C}^2$ (two distinct ones)
+	\item $\mathbb{C}^3$
+	\item $\mathbb{C}^4$
+\end{itemize}
+
+These cells glue together to make $\mathrm{Gr}(2,4)$, and each closure is a Schubert variety.
+
+\subsubsection{5. \textbf{Connection to Schubert calculus}}
+
+In $G/P$ (like Grassmannians), the \textbf{Bruhat decomposition}:
+\[
+G/P = \bigsqcup_{w \in W^P} BwP/P
+\]
+gives a decomposition into \textbf{Schubert cells}, each isomorphic to $\mathbb{C}^m$. Counting these by dimension directly gives the Betti numbers.
+
+
+\end{document}

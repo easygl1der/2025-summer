@@ -1,0 +1,5 @@
+\contentsline {section}{\tocsection {}{1}{Affine connection}}{2}{section.1}%
+\contentsline {section}{\tocsection {}{2}{Geodesics}}{5}{section.2}%
+\contentsline {section}{\tocsection {}{3}{Curvature}}{5}{section.3}%
+\contentsline {subsection}{\tocsubsection {}{3.1}{Tensor}}{6}{subsection.3.1}%
+\contentsline {section}{\tocsection {}{4}{Variations of energy}}{8}{section.4}%

@@ -1,0 +1,217 @@
+\documentclass{ctexart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={数学笔记},
+    pdfauthor={乐绎华},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{proposition}[theorem]{命题}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{problem}[theorem]{题目}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{备注}
+\newtheorem{note}[theorem]{注}
+\newtheorem{observation}[theorem]{观察}
+
+% 解答环境
+\newtheorem*{solution}{解}
+\newtheorem*{proof*}{证明}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华}
+\title{数学笔记}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+Reference: Theory of Orlicz spaces, by Rao and Ren. Application of Orlicz spaces, by Rao.
+
+A function $\Phi$ is called a \textbf{Young function} if $\Phi(0)=0$, $\Phi$ is even, convex, strictly increasing on $[0,\infty)$ and $\lim_{ t \to \infty }t^{-1}\Phi(t)=\infty$. The convexity of $\Phi$ and $\Phi(0)=0$ implies that $\Phi (cx)\leq c\Phi (x)$ and $\Phi(c^{-1}x)\geq c^{-1}\Phi(x)$ for all $c\in(0,1)$, $x\in \mathbb{R}$. The dual function of $\Phi$ is $\Psi$ defined by $\Psi(u)\coloneqq \sup_{v} \{ u\cdot v-\Phi(v) \}$.
+\[
+\widetilde{L}^{\Phi}=\left\{  f:\Omega\to \mathbb{R},\text{measurable},\rho_{\Phi}(f)=\int_{\Omega}^{} \Phi(f) \, \mathrm{d}\mu<\infty   \right\}
+\]
+The space
+\[
+L^{\Phi}=\{ f:\Omega\to \mathbb{R},\text{measurable}, \rho_{\Phi}(af)<\infty,\text{for some }a>0 \}
+\]
+is called an Orlicz space on $(\Omega,\Sigma,\mu)$.
+
+The space
+\[
+M^{\Phi}=\{ f:\Omega\to \mathbb{R},\text{measurable}, \rho_{\Phi}(af)<\infty,\text{for all }a>0 \}
+\]
+is called the Morse-Transue space.
+
+The \textbf{Orlicz norm} is
+\[
+\lVert f \rVert _{\Phi}:=\sup \left\{  \int_{\Omega}^{} \lvert f g\rvert  \, \mathrm{d}\mu   :\rho_{\Psi}(g)\leq 1\right\}
+\]
+The \textbf{gauge norm} is
+\[
+\lVert f \rVert _{(\Phi)}\coloneqq \inf \left\{  k\geq0:\rho_{\Phi}\left( \frac{f}{k} \right)\leq 1  \right\}
+\]
+where $(\Phi,\Psi)$ are complementary pair of Young functions and $(L^{\Phi}(\mu),L^{\Psi}(\mu ))$ are the corresponding Orlicz spaces on a measure space $\left( \Omega,\Sigma,\mu \right)$.
+
+Also, $(L^{\Phi},\lVert \cdot \rVert_{\Phi})$ is a Banach space if $f,g$ are identified when $\lVert f-g \rVert_{\Phi}=0$.
+
+Under some good condition, the dual space of $L^{\Phi}(\mu)$ is $L^{(\Psi)}(\mu)$. We have Holder inequality:
+\[
+\lVert fg \rVert _{1}\leq \lVert f \rVert _{(\Phi)}\lVert g \rVert _{\Psi}\qquad \lVert fg \rVert _{1}\leq \lVert f \rVert _{\Phi}\lVert g \rVert _{(\Psi)}
+\]
+for $f\in L^{\Phi}, g\in L^{\Psi}$.
+
+Define
+\[
+M^{\Phi}\coloneqq \{ f:\rho_{\Phi}(\alpha f)<\infty,\forall \alpha>0 \}
+\]
+If $\Phi$ is Young function, then $M^{\Phi}\subset \widetilde{L}^{\Phi}\subset L^{\Phi}$.
+
+For every $0\neq f\in M^{\Phi}$, we have
+\[
+\int_{\Omega}^{} \Phi\left( \frac{f}{\lVert f \rVert _{(\Phi)} } \right) \, \mathrm{d}\mu=1
+\]
+\begin{note}
+For simplicity, we use $L^{\Phi}$ and $L^{(\Phi)}$ for spaces $(L^{\Phi},\lVert \cdot \rVert_{\Phi})$ and $(L^{\Phi},\lVert \cdot \rVert_{(\Phi)})$ respectively. Similar for $M^{\Phi}$ and $M^{(\Phi)}$. In case $\mu$ is counting measure, the corresponding spaces are denoted $\ell^{\Phi},\ell^{(\Phi)}$ and $m^{\Phi},m^{(\Phi)}$ respectively.
+\end{note}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Orlicz-space-2025091023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The dual of $L^{\Phi}$ with the Luxemburg norm is $L^{\Psi}$ with the Orlicz norm (under certain conditions, e.g., $\Phi$ and $\Psi$ satisfy the $\Delta_2$ -condition for finite measures).
+
+The question is whether the following are dual norms.
+
+For $p,q\in(\Delta _n,\oplus;\mathbb{R},\odot)$,
+\[
+\lVert p \rVert _{(\Phi)}\coloneqq \inf \left\{  k>0:\sum_{i=0}^{n}  \Phi\left( \frac{\text{clr}_{i}(p)}{k} \right)\leq 1  \right\}
+\]
+where $\text{clr}(p)=\left[ \log\frac{p_0}{\left( \prod_{i=0}^{n}p_i \right)^{1/(n+1)}} ,\dots,\log\frac{p_n}{\left( \prod_{i=0}^{n}p_i \right)^{1/(n+1)}}\right]$.
+\[
+\ell_{p}(q)\coloneqq \sum_{i=0}^{n}\text{clr}_{i}(p)\text{clr}_i(q)
+\]
+We define a norm on $\Delta _n^{*}$, the linear functional space,
+\[
+\lVert \ell_{p} \rVert _{\Psi}\coloneqq \sup \left\{  \left< p,q \right>: \rho_{\Phi}(q)=\sum_{i=0}^{n}\Phi(\text{clr}_i(q))  \leq 1  \right\}\overset{ \text{Theorem 8} }{ = }\underbrace{ \sup \{ \left< p,q \right> :\lVert q \rVert _{(\Phi)}\leq 1 \} }_{ =\lVert p \rVert _{\Phi,*} }
+\]
+where $\left< p,q \right>\coloneqq \ell_{p}(q)$.
+
+\begin{theorem}
+$(\Delta _n,\lVert \cdot \rVert_{(\Phi)})$ and $(\Delta _n^{*},\lVert \cdot \rVert_{\Psi})$ are dual space.
+\end{theorem}
+\begin{proof}
+Omitted.
+\end{proof}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{Orlicz-space-2025091117.png}
+% \caption{}
+\label{}
+\end{figure}
+
+In the case $\Phi(u)=\lvert u \rvert ^{p},1<p<\infty$, we have $\lVert \cdot \rVert_{(\Phi)}=\lVert \cdot \rVert_{p}$ and $\lVert \cdot \rVert_{\Psi}=\lVert \cdot \rVert_{q}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-Orlicz-space-2025091117.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-Orlicz-space-2025091117.png}
+% \caption{}
+\label{}
+\end{figure}
+
+When $\Phi(u)=u^{2}/2,\Psi(u)=u^{2}/2$, this is the inner product case. The norm we defined is a generalization.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-Orlicz-space-2025091117.png}
+% \caption{}
+\label{}
+\end{figure}
+
+
+\end{document}

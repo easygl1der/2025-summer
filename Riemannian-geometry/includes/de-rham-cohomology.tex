@@ -1,0 +1,143 @@
+\documentclass{ctexart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={数学笔记},
+    pdfauthor={乐绎华},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{proposition}[theorem]{命题}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{problem}[theorem]{题目}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{备注}
+\newtheorem{note}[theorem]{注}
+\newtheorem{observation}[theorem]{观察}
+
+% 解答环境
+\newtheorem*{solution}{解}
+\newtheorem*{proof*}{证明}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华}
+\title{数学笔记}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+See loring W. tu .
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{de-rham-cohomology-2025073100.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-de-rham-cohomology-2025073100.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-de-rham-cohomology-2025073100.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The de Rham cohomology $H^{*}(M)$ is an anticommutative graded ring, with wedge as the multiplication; anticommutative means :
+\[
+a\cdot b=(-1)^{k\ell}b\cdot a
+\]
+where $a\in A^{k}, b\in A^{\ell}$ for the graded ring $A=\oplus_{k=0}^{\infty}A^{k}$; in graded ring the ring multiplication sends $A^{k}\times A^{\ell}$ to $A^{k\times \ell}$.
+
+Suppose $F:N\to M$ is a $C^{\infty}$ mapping of manifolds; because $F^{*}(\omega \wedge \tau)=F^{*}\omega \wedge F^{*}\tau$ for differential forms $\omega$ and $\tau$ on $M$, the pullback map $F^{*}:H^{*}(M)\to H^{*}(N)$ is a ring homomorphism. If $F$ is diffeomorphism, then $F^{*}$ is isomorphism.
+
+To sum up, de Rham cohomology gives a contravariant functor from the category of $C^{\infty}$ manifolds to the category of anticommutative graded rings. In this way the de Rham cohomology becomes a powerful diffeomorphism invariant of $C^{\infty}$ manifolds.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{de-rham-cohomology-2025073112.png}
+% \caption{}
+\label{}
+\end{figure}
+
+
+\end{document}

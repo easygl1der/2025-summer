@@ -1,0 +1,288 @@
+\documentclass{ctexart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={数学笔记},
+    pdfauthor={乐绎华},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{proposition}[theorem]{命题}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{problem}[theorem]{题目}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{备注}
+\newtheorem{note}[theorem]{注}
+\newtheorem{observation}[theorem]{观察}
+
+% 解答环境
+\newtheorem*{solution}{解}
+\newtheorem*{proof*}{证明}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华}
+\title{数学笔记}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+位势方程 $\Delta u=f$ 在零 Dirichlet 边值条件下的解是泛函 $F(u)=\int_{\Omega}^{} \left[ \frac{1}{2}\lvert \nabla u \rvert ^{2}+fu \right] \, \mathrm{d}x$ 的最小值点，叫做 Dirichlet 原理.
+
+给定方程
+\[
+-\sum_{i, j=1}^n a_{i j} \partial_{i j}^2 u+\sum_{i=1}^n b_i \partial_i u+c u=f
+\]
+若 $(a_{ij}(x))$ 总是正定或负定，则称其为椭圆型. 若存在 $c_0>0$，使得
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{elliptic-2025072510.png}
+% \caption{}
+\label{}
+\end{figure}
+则称为一致椭圆型.
+
+边值条件有：
+
+\begin{itemize}
+	\item Dirichlet 边值：$\left.u\right|_{\partial \Omega}(x)=h(x)$.
+	\item Neumann 边值：$\left.\frac{ \partial u(x) }{ \partial \mu }\right|_{\partial \Omega}=h(x)$. 其中 $\mu$ 是某个向量场.
+	\item Robin 边值：$\frac{ \partial u (x) }{ \partial \mu }+\sigma (x) u (x)=h (x),\forall x\in \partial \Omega$.
+	\item ...
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{elliptic-2025072511.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-elliptic-2025072511.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-elliptic-2025072511.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-elliptic-2025072511.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{proof}
+应用紧算子的 Fredholm 定理.
+\end{proof}
+考虑如下方程
+\[
+\begin{cases}
+Lu=f & \forall x\in \Omega \\
+u=\psi & \forall x\in \partial \Omega
+\end{cases}
+\]
+其中 $f\in H^{-1}(\Omega)$, $\psi\in H^{\frac{1}{2}}(\partial\Omega)$.
+
+接下来研究解的正则性问题：如果 $f$ 属于比 $H^{-1}(\Omega)$ 正则性更好的空间，$\psi$ 属于比 $H^{\frac{1}{2}}(\partial \Omega)$ 正则性更好的空间，那么解 $u$ 是否存在更好的正则性？
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-elliptic-2025072511.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-elliptic-2025072511.png}
+% \caption{}
+\label{}
+\end{figure}
+略过正则性这些各种范数估计.
+
+接下来考虑特征值问题：
+\[
+\begin{cases}
+Lu=\lambda u & \forall x\in \Omega  \\
+u=0 & \forall x\in \partial \Omega 
+\end{cases}
+\]
+我们要研究对于什么样的复数 $\lambda$ ，这个问题存在非零解 $u$，称为\textbf{特征函数}. 所以本节研究的问题叫做 Dirichlet 特征值问题，应用前两节得到的结果和关于紧算子的 Riesz-Shauder 理论，可以得到这个问题的圆满解答.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+这个定理在抽象空间中就有一套证明，参见于品.
+
+接下来考虑极值原理
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+我们注意到在经典解的极值问题中，证明利用到了经典解的假设，却不涉及解的导数，自然地我们会问：对强解和弱解是否也成立类似的结果？这个问题的回答是肯定的.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-elliptic-2025072512.png}
+% \caption{}
+\label{}
+\end{figure}
+
+接下来建立 Dirichlet 边值问题解的 $L^{p}$ 估计，这里先不考虑解的存在性，而是对已知的解建立一些不等式，所以叫做\textbf{先验估计}.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{elliptic-2025072517.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-elliptic-2025072521.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{elliptic-2025072521.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		1 & 1 \\
+		\hline
+		2 & 2 \\
+		\hline
+	\end{tabular}
+\end{table}
+
+\end{document}

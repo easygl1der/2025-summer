@@ -1,0 +1,18 @@
+# Large files
+.obsidian.zip
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Build outputs
+*.pdf
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# Obsidian
+.obsidian/
+.trash/

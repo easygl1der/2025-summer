@@ -1,0 +1,57 @@
+\contentsline {section}{\tocsection {}{1}{Grassmannians, Schubert Varieties, Flag Varieties, and Schubert Calculus}}{1}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{Why study Grassmannian?}}{1}{subsection.1.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.1}{\textbf {Linear Algebra \& Geometry}}}{2}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.2}{\textbf {Algebraic Geometry}}}{2}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.3}{\textbf {Topology \& Characteristic Classes}}}{2}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.4}{\textbf {Representation Theory}}}{2}{subsubsection.1.1.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.5}{\textbf {Physics}}}{2}{subsubsection.1.1.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.1.6}{\textbf {Applied Mathematics}}}{3}{subsubsection.1.1.6}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{Why study Grassmannian?}}{3}{subsection.1.2}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{Schubert varieties}}{3}{subsection.1.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.1}{1. \textbf {What is a Schubert variety?}}}{3}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.2}{2. \textbf {Geometric Motivation}}}{4}{subsubsection.1.3.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.3}{3. \textbf {Why They’re Useful}}}{4}{subsubsection.1.3.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.4}{4. \textbf {Broader Motivation}}}{4}{subsubsection.1.3.4}%
+\contentsline {paragraph}{\tocparagraph {}{}{1. \textbf {Enumerative Geometry}}}{4}{section*.3}%
+\contentsline {paragraph}{\tocparagraph {}{}{2. \textbf {Representation Theory}}}{4}{section*.4}%
+\contentsline {paragraph}{\tocparagraph {}{}{3. \textbf {Algebraic Geometry}}}{4}{section*.5}%
+\contentsline {paragraph}{\tocparagraph {}{}{4. \textbf {Combinatorics}}}{4}{section*.6}%
+\contentsline {paragraph}{\tocparagraph {}{}{5. \textbf {Physics}}}{4}{section*.7}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.3.5}{5. \textbf {Why Study Them? — The Core Reasons}}}{5}{subsubsection.1.3.5}%
+\contentsline {paragraph}{\tocparagraph {}{}{An example of application of Schubert varieties}}{5}{section*.8}%
+\contentsline {subparagraph}{\tocsubparagraph {}{}{1. Rewriting the problem in Grassmannian language}}{5}{section*.9}%
+\contentsline {subparagraph}{\tocsubparagraph {}{}{2. The incidence condition}}{5}{section*.10}%
+\contentsline {subparagraph}{\tocsubparagraph {}{}{3. Stacking the conditions}}{5}{section*.11}%
+\contentsline {subparagraph}{\tocsubparagraph {}{}{4. Counting via Schubert calculus}}{6}{section*.12}%
+\contentsline {subparagraph}{\tocsubparagraph {}{}{5. Interpretation}}{6}{section*.13}%
+\contentsline {subparagraph}{\tocsubparagraph {}{}{6. Moral}}{6}{section*.14}%
+\contentsline {subsection}{\tocsubsection {}{1.4}{Flag varieties}}{6}{subsection.1.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.1}{1. Definition}}{6}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.2}{2. Group-theoretic viewpoint}}{6}{subsubsection.1.4.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.3}{3. Geometry}}{7}{subsubsection.1.4.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.4}{4. Why It’s Important}}{7}{subsubsection.1.4.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.4.5}{5. Quick Examples}}{7}{subsubsection.1.4.5}%
+\contentsline {subsection}{\tocsubsection {}{1.5}{What is Schubert calculus?}}{7}{subsection.1.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.1}{1. \textbf {The problem it solves}}}{7}{subsubsection.1.5.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.2}{2. \textbf {The setup}}}{7}{subsubsection.1.5.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.3}{3. \textbf {The algebra side}}}{8}{subsubsection.1.5.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.4}{4. \textbf {Computational rules}}}{8}{subsubsection.1.5.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.5}{5. \textbf {Example}}}{8}{subsubsection.1.5.5}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.5.6}{6. \textbf {Why it’s powerful}}}{8}{subsubsection.1.5.6}%
+\contentsline {subsection}{\tocsubsection {}{1.6}{Hodge numbers of Grassmannians}}{8}{subsection.1.6}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.1}{Quick summary (the punchline)}}{8}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.2}{Why $H^{p,q}$ vanishes off the diagonal}}{9}{subsubsection.1.6.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.6.3}{How to compute the diagonal Hodge numbers $h^{p,p}$}}{9}{subsubsection.1.6.3}%
+\contentsline {paragraph}{\tocparagraph {}{}{1 — Count Schubert classes (combinatorial)}}{9}{section*.15}%
+\contentsline {paragraph}{\tocparagraph {}{}{2 — Use the Gaussian binomial coefficient (Poincaré polynomial)}}{9}{section*.16}%
+\contentsline {paragraph}{\tocparagraph {}{}{3 — Schur / Chern-class algebra (Giambelli / Schubert calculus)}}{9}{section*.17}%
+\contentsline {paragraph}{\tocparagraph {}{}{4 — Representation-theoretic / Borel methods}}{9}{section*.18}%
+\contentsline {paragraph}{\tocparagraph {}{}{5 — Computational tools}}{10}{section*.19}%
+\contentsline {paragraph}{\tocparagraph {}{}{Worked example: $\mathrm {Gr}(2,4)$}}{10}{section*.20}%
+\contentsline {paragraph}{\tocparagraph {}{}{Practical recommendations}}{10}{section*.21}%
+\contentsline {subsection}{\tocsubsection {}{1.7}{Cell decomposition}}{10}{subsection.1.7}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.1}{1. \textbf {Basic Idea}}}{10}{subsubsection.1.7.1}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.2}{2. \textbf {Why It’s Useful}}}{11}{subsubsection.1.7.2}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.3}{3. \textbf {Example: Projective space}}}{11}{subsubsection.1.7.3}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.4}{4. \textbf {Example: Grassmannian $\mathrm {Gr}(2,4)$}}}{11}{subsubsection.1.7.4}%
+\contentsline {subsubsection}{\tocsubsubsection {}{1.7.5}{5. \textbf {Connection to Schubert calculus}}}{11}{subsubsection.1.7.5}%

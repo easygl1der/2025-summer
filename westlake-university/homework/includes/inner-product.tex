@@ -1,0 +1,168 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{inner-product-2025070721.png}
+% \caption{}
+\label{}
+\end{figure}
+
+We need to show that
+
+\begin{itemize}
+	\item The conjugate symmetry: $\left< p,q \right>=\overline{\left< q,p \right>}$.
+	\item Linearity in the first argument: $\left< (a\odot p)\oplus (b\odot q),r \right>=a\left< p,r \right>+b\left< q,r \right>$.
+	\item Prositive definiteness: if $p$ is nonzero, then $\left< p,p \right>>0$.
+\end{itemize}
+
+Clearly,
+\[
+\left< p,q \right> =\sum_{i=0}^{n} \text{clr}_i(p)\text{clr}_i(q)=\sum_{i=0}^{n} \text{clr}_i(q)\text{clr}_i(p)= \underbrace{ \left< q,p \right> }_{ \text{is real} } =\overline{\left< q,p \right> }
+\]
+And
+\[
+\begin{aligned}
+\sum_{i=0}^{n} \text{clr}_i(p)\text{clr}_i(q) & =\sum_{i=0}^{n} \log\frac{p_i}{\left( \prod_{j=0}^{n} p_j \right)^{1/(n+1)}}\cdot \log\frac{q_i}{\left( \prod_{j=0}^{n} q_j \right)^{1/(n+1)}} \\
+ & =\sum_{i=0}^{n} \left( \log p_i-\frac{1}{n+1}\sum_{j=0}^{n} \log p_j \right)\left( \log q_i-\frac{1}{n+1}\sum_{j=0}^{n} \log q_j \right) \\
+ & =\sum_{i=0}^{n} \log p_i\log q_i -\frac{1}{n+1}\left( \sum_{i=0}^{n} \log p_i \right)\left( \sum_{i=0}^{n} \log q_i \right)
+\end{aligned}
+\]
+\[
+\begin{aligned}
+\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} \log\frac{p_i}{p_j}\log\frac{q_i}{q_j} & =\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} (\log p_i-\log p_j)(\log q_i-\log q_j) \\
+ & =\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} (\log p_i\log q_i-\log p_i\log q_j-\log p_j\log q_i+\log p_j\log q_j) \\
+ & =\sum_{i=0}^{n} \log p_i\log q_i-\frac{1}{n+1}\left( \sum_{i=0}^{n} \log p_i \right)\left( \sum_{i=0}^{n} \log q_i \right) \\
+ & =\sum_{i=0}^{n} \text{clr}_i(p)\text{clr}_i(q)
+\end{aligned}
+\]
+Then
+\[
+\begin{aligned}
+(a\odot p)\oplus (b\odot q) & =\left[ \frac{(p_0)^{a}}{\sum_{i=0}^{n} (p_i)^{a}},\dots,\frac{(p_n)^{a}}{\sum_{i=0}^{n} (p_i)^{a}} \right]\oplus \left[ \frac{(q_0)^{b}}{\sum_{i=0}^{n} (q_i)^{b}},\dots,\frac{(q_n)^{b}}{\sum_{i=0}^{n} (q_i)^{b}} \right] \\
+ & =\left[ \frac{\frac{(p_0)^{a}}{\sum_{i=0}^{n} (p_i)^{a}}\cdot\frac{(q_0)^{b}}{\sum_{i=0}^{n} (q_i)^{b}}}{\sum_{j=0}^{n} \left[ \frac{(p_j)^{a}}{\sum_{i=0}^{n} (p_i)^{a}}\cdot\frac{(q_j)^{a}}{\sum_{i=0}^{n} (q_i)^{a}} \right]},\dots, \frac{\frac{(p_n)^{a}}{\sum_{i=0}^{n} (p_i)^{a}}\cdot\frac{(q_n)^{b}}{\sum_{i=0}^{n} (q_i)^{b}}}{\sum_{j=0}^{n} \left[ \frac{(p_j)^{a}}{\sum_{i=0}^{n} (p_i)^{a}}\cdot\frac{(q_j)^{a}}{\sum_{i=0}^{n} (q_i)^{a}} \right]}\right]
+\end{aligned}
+\]
+Thus
+\[
+\begin{aligned}
+\left< (a\odot p)\oplus (b\odot q),r \right> & =\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} \log\frac{(p_i)^{a}\cdot(q_i)^{b}}{(p_j)^{a}\cdot(q_j)^{b}}\log\frac{r_i}{r_j} \\
+ & =\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} \left( a\log\frac{p_i}{p_j}+b\log\frac{q_i}{q_j} \right)\log\frac{r_i}{r_j} \\
+ & =a\left< p,r \right> +b\left< q,r \right> 
+\end{aligned}
+\]
+And for nonzero $p\in\Delta _n$ (nonzero means $p\neq o$, where $o=\left( \frac{1}{n+1},\dots,\frac{1}{n+1} \right)$)
+\[
+\left< p,p \right> =\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} \left( \log\frac{p_i}{p_j} \right)^{2}\geq 0
+\]
+The equality holds only when $p_i=p_j,\forall i,j$, i.e. $p=o$. Then for $p\neq o$,
+\[
+\left< p,p \right> >0
+\]
+Hence $\left< \cdot,\cdot  \right>$ is an inner product.
+
+
+\end{document}

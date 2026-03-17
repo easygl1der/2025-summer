@@ -1,0 +1,4 @@
+\contentsline {section}{\tocsection {}{1}{Introduction of Preliminaries}}{1}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{Regularity?}}{1}{subsection.1.1}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{History}}{2}{subsection.1.2}%
+\contentsline {section}{\tocsection {}{2}{IPM}}{2}{section.2}%

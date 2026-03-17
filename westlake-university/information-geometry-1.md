@@ -1,0 +1,223 @@
+$\Delta _n$ is a simplex, $p_i\coloneqq\delta_{i}$ which is the atomic measures. The mixture model is 
+$$
+p(\zeta \mid u)=\dots
+$$
+We need to parameterize $\Delta _n$; the exponential representation is
+$$
+p(\zeta \mid x)=\sum_{i=1}^{n} u_i\delta _i(\zeta)+\phi(u)\delta_0(\zeta)
+$$
+Where
+$$
+\phi(u)\coloneqq 1-\sum_{i=1}^{n} u_i=1-\sum_{i=1}^{n} p_i=p_0
+$$
+ 
+$$
+x=\left[ x^{1},\dots,x^{n} \right]=\left[ \log \frac{p_1}{p_0},\dots,\log\frac{p_n}{p_0} \right]
+$$
+
+Denote $Z(x)=e^{ \Phi(x) }=\sum_{i=1}^{n}e^{ x^{i} }+1$. Since $\int_{\Omega}^{p(\zeta \mid x)} \, \mathrm{d}\mu=1$
+
+$$
+p(\zeta \mid  x)=e^{ -\Phi (x) }\left( \sum_{i=1}^{n} e^{ x^{i} }\delta _i(\zeta) \right)
+$$
+To represent $p\in\Delta _n\subset \mathbb{R}^{n+1}$, we have
+
+
+Exponential rep
+$$
+\log p(\zeta \mid x)=\sum_{i=1}^{n} x^{i}\delta _i(\zeta)-\Phi(x)
+$$
+Mixture
+$$
+p(\zeta \mid u)=\sum_{i=1}^{n} u_i\delta _i(\zeta)+\phi (u)\delta_0(\zeta)
+$$
+With $[,u_i,]=[,p_i,]$. They are dual representations of $\Delta _n$. Here
+$$
+e^{ -\Phi(x) }=\phi(u)=1-\sum_{i=1}^{n}  p_i
+$$
+
+---
+$$
+\Delta _n=\mathbb{R}^{n+1}_{>0}/\mathbb{R}_{>0}
+$$
+The equivalence relation is $p \simeq q$ if $\exists \kappa\in \mathbb{R}_{>0}$ s.t. $\kappa p=q$. 
+
+Exp capture the prejection..
+
+Denote $p, q\in\Delta _{n}$, then $(\Delta _n,\oplus;\mathbb{R},\odot)$ has structure of a **vector space** over $\mathbb{R}$. 
+$$
+p\oplus q\coloneqq \left[ \frac{p_0q_0}{\sum_{i=0}^{n} p_iq_i},\dots,\frac{p_nq_n}{\sum p_iq_i} \right]
+$$
+$$
+c\odot p=\left[ \frac{(p_0)^{c}}{\sum_{i=0}^{n} (p_i)^{c}},\dots,\frac{(p_n)^{c}}{\sum_{i=0}^{n} (p_i)^{c}} \right]
+$$
+
+We denote 
+$$
+o\coloneqq \left[ \frac{1}{n+1},\dots,\frac{1}{n+1} \right]
+$$
+
+---
+The centered log-ratio of $p$ is 
+$$
+\text{clr}(p)=\left[ \log\frac{p_i}{\left( \prod_{i=0}^{n} p_i \right)^{1/(n+1)}} \right]
+$$
+
+The inner product (prove?)
+$$
+\left< p,q \right> =\sum_{i=0}^{n}\text{clr}_i(p)\text{clr}_i(q)=\frac{1}{2n+2}\sum_{i=0}^{n} \sum_{j=0}^{n} \log\dots
+$$
+
+For $p=p (\zeta \mid x), q=p (\zeta \mid y)$, we have
+- $p\oplus q=p(\zeta \mid x+y)$
+- $c\odot p=p(\zeta \mid cx)$
+
+The negative entropy function $\mathbb{S}$ on $\Delta _n$ is
+$$
+-\mathbb{S}[p]=\sum_{i=0}^{n} p_i\log p_i==\sum_{i=1}^{n} u_i\log u_i+\phi (u)\log \phi(u)\eqqcolon S(u)
+$$
+$S (u)$ is the convex conj function $\Phi^{*}(\cdot)$ of $\Phi(\cdot )$.
+
+The Hessian is 
+
+
+
+The fisher info for the parametric probability model $p(\zeta \mid\theta)$  is
+$$
+I_{ij}(\theta)\coloneqq \underbrace{ \int_{\Omega}^{} \partial _ip(\zeta \mid \theta)\partial _j\log p(\zeta \mid \theta) \, \mathrm{d}x  }_{ ? }= -\int_{\Omega}^{} p(\zeta \mid \theta)\frac{ \partial^2 \log p(\zeta \mid \theta) }{ \partial \theta^{i}\partial \theta^{j} }  \, \mathrm{d}\mu
+$$
+The fisher matrix is positive curvature 
+
+
+---
+
+### Normal distribution
+
+We consider the family of $N(\zeta \mid \mu,\sigma)$. 
+
+When $\sigma=0$, it is $\delta(\zeta-\mu)$. When $\sigma=\infty$, it's uniform distribution.
+
+We can define a metric over the space $(\mu,\sigma)\in \mathbb{R}\times \mathbb{R}_{\geq0}$.
+
+$$
+N(\zeta \mid \mu,\sigma)=\exp \left\{  \sum x^{i}F_i(\zeta)-\Phi(x)  \right\}
+$$
+With $F_1(\zeta)=\zeta,F_2(\zeta)=\zeta^{2}$. 
+
+A new parametrization:
+$$
+x^{1}=\frac{\mu}{\sigma^{2}}\qquad x^{2}=-\frac{1}{2\sigma^{2}}
+$$
+$$
+\Phi(x)=\frac{1}{4}\frac{x^{1}\cdot x^{1}}{(-x^{2})}-\frac{1}{2}\log(-x^{2})+\frac{1}{2}\log \pi
+$$
+
+$$
+u_1=\mathbb{E}_{N}[F_1(\zeta)]=\int_{\Omega}^{} \zeta N(\zeta \mid \mu,\sigma) \, \mathrm{d}\zeta=\mu
+$$
+$$
+u_2=\mathbb{E}_{N}(F_2(\zeta))\int_{\Omega}^{} \zeta^{2}N(\zeta \mid \mu,\sigma) \, \mathrm{d}\zeta=\mu^{2}+\sigma^{2}
+$$
+So
+$$
+\mu=u_1\qquad \sigma=\sqrt{ u_2-u_1\cdot u_2 }
+$$
+It turn out that 
+$$
+u_1=\frac{ \partial \Phi(x) }{ \partial x^{1} } \qquad u_2=\frac{ \partial \Phi(x) }{ \partial x^{2} }
+$$
+
+We calculate the (Legendre) Cconjugate 
+$$
+\begin{aligned}
+\Phi^{*}(u) & =\sup_{x}\left( \sum_{i=1}^{2} u_ix^{i}-\Phi(x) \right) \\
+ & =-\frac{1}{2}(1+\log2\pi )-\underbrace{ \frac{1}{2}\log(u_2-u_1\cdot u_2) }_{ =\log \sigma(u) } 
+\end{aligned}
+$$
+Then
+$$
+\Phi^{*}(u(\theta))=S(\theta)\coloneqq \int_{\Omega}^{} N(\zeta \mid \mu,\sigma)\log N(\zeta \mid \mu,\sigma) \, \mathrm{d}\zeta
+$$
+
+----
+Assume a datum $\zeta\in \Omega$, generated from an underlying distribution $p(\cdot )$. 
+
+A probability model about the r.v. $\zeta$ is distribution $q(\cdot)$ defined on $\Omega$.
+
+> $q$ is your model which does not generate data.
+
+$-\log q(\zeta)$ is interpreted as
+- The "surpriseal" of the datum $\zeta$;
+- The "loss" of the probaility model $q(\zeta)$.
+
+The expected "loss" of model $q(\cdot)$:
+$$
+\mathbb{E}_{p}[-\log q(\zeta)]=-\int_{\Omega}^{} p(\zeta  )\log q(\zeta)\, \mathrm{d}\mu
+$$
+Is called the cross entropy of $q$ w.r.t. $p$.
+
+
+Apply Jensen to prove
+$$
+\mathbb{E}_{p}(-\log q(\zeta))\geq \mathbb{E}_{p}(-\log p(\zeta))\qquad \forall q
+$$
+
+>  Your loss cannot be smaller than the data generating loss.
+
+$-\mathbb{E}_{p}[\log p(\zeta)]\equiv \mathbb{S}[p]$ is the Shannon entropy; $-\mathbb{E}_{p}(\log q (\zeta))$ is the cross-entropy.
+
+Their difference $\mathbb{E}_{p}\left[ \log\frac{p(\zeta)}{q(\zeta)} \right]$ denoted $\mathbb{K}[p\mid \mid q]$ is called relative entropy, or more popularly, Kullback-Leibler divergence
+$$
+\mathbb{K}[p\mid \mid q]\coloneqq \int_{\Omega}^{} p(\zeta )\log\frac{p(\zeta)}{q(\zeta)} \, \mathrm{d}\mu
+$$
+They are linked by
+$$
+\mathbb{K}[p\mid \mid q]+\mathbb{S}[p]=-\mathbb{E}_{p}(\log q(\zeta))\geq \mathbb{S}[p]
+$$
+Which means $\mathbb{K}[p\mid \mid q]$ is nonnegative.
+
+
+---
+We denote $\mathfrak{M}$ as the collection of a parametric family of density functions that are all ac w.r.t. $\mu$
+$$
+\mathfrak{M}\coloneqq \{ p(\cdot \mid \theta):\theta=[\theta^{1},\dots,\theta^{n}]\in \mathbb{R}^{n} \}
+$$
+The score function of the given probability model $p(\zeta \mid\theta)$ is (for $s=[s_1,\dots,s_n]$)
+$$
+s_i(\zeta ,\theta)=\partial _i\log p(\zeta \mid \theta)
+$$
+
+Rao use Fisher info as the Riemannian metric tensor $\mathbf{g}$ on $\mathfrak{M}$ (with components $g_{ij}$)
+$$
+g_{ij}(\theta)=I_{ij}(\theta)
+$$
+Which is called Hessian metric. Manifolds with a Hessian metric and a pair of flat connected is called "dual-flat".
+
+- $I$ is the lowest order expansion of KL divergence. 
+- Identify the Fisher info $I_{ij}$ as Riemannian metric $g_{ij}$.
+- Scalar curvature is an intrinsic geometric property, invariant under reparameterization, whether using $(\mu,\sigma)$, $(x^{1},x^{2})$ or $(u^{1},u^{2})$.
+
+Motivation for using differentiable manifold $\mathfrak{M}$, representa a pdf as a geometric object (point), independent. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

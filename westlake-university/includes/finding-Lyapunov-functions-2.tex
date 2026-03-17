@@ -1,0 +1,583 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+		% 超链接设置
+		\hypersetup{
+		    colorlinks=true,
+		    linkcolor=red,
+		    filecolor=magenta,
+		    urlcolor=cyan,
+		    pdftitle={\@title},
+		    pdfauthor={\@author},
+		    pdfsubject={数学笔记},
+		    pdfkeywords={数学},
+		    bookmarksnumbered=true,
+		    bookmarksopen=true,
+		    bookmarksopenlevel=6,
+		    pdfstartview=FitH,
+		    pdfpagemode=UseOutlines,
+		    pdfborder={0 0 0}
+		}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/资料/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Foundations of Dynamical Systems Theory}
+
+\begin{note}
+\textbf{Essential Background for Lyapunov Functions}This document provides the mathematical foundations of dynamical systems theory required to understand Lyapunov functions and their applications to Markov processes.
+\end{note}
+\section{1. Introduction to Dynamical Systems}
+
+\subsection{1.1 What is a Dynamical System?}
+
+A \textbf{dynamical system} is a mathematical model that describes the time evolution of a system in its state space. It consists of:
+
+\begin{enumerate}
+	\item \textbf{State Space} $\mathcal{X}$: The set of all possible states
+	\item \textbf{Evolution Rule}: A rule that determines how states change over time
+	\item \textbf{Time Domain}: Either discrete ($\mathbb{Z}$ or $\mathbb{N}$) or continuous ($\mathbb{R}$ or $\mathbb{R}_+$)
+\end{enumerate}
+
+\subsection{1.2 Types of Dynamical Systems}
+
+\subsubsection{Deterministic Systems}
+
+\begin{itemize}
+	\item \textbf{Discrete-time}: $x_{n+1} = f(x_n)$ where $f: \mathcal{X} \to \mathcal{X}$
+	\item \textbf{Continuous-time}: $\frac{dx}{dt} = f(x)$ where $f: \mathcal{X} \to \mathbb{R}^d$
+\end{itemize}
+
+\subsubsection{Stochastic Systems}
+
+\begin{itemize}
+	\item \textbf{Discrete-time}: $X_{n+1} = F(X_n, Z_n)$ where $Z_n$ are random variables
+	\item \textbf{Continuous-time}: $dX_t = f(X_t)dt + g(X_t)dW_t$ (stochastic differential equation)
+	\begin{itemize}
+		\item Here $W_t$ is a \textbf{Wiener process} (Brownian motion), a continuous-time stochastic process with:
+		\begin{itemize}
+			\item $W_0 = 0$
+			\item Independent increments: $W_{t+s} - W_t$ is independent of $\{W_u : u \leq t\}$
+			\item Gaussian increments: $W_{t+s} - W_t \sim \mathcal{N}(0, s)$
+			\item Continuous paths but nowhere differentiable
+		\end{itemize}
+	\end{itemize}
+\end{itemize}
+
+\subsection{1.3 Key Concepts}
+
+\begin{definition}[Orbit/Trajectory]
+The \textbf{orbit} or \textbf{trajectory} of a point $x_0$ is the sequence of states:
+	\begin{itemize}
+		\item Discrete: $\{x_0, f(x_0), f^2(x_0), \ldots\}$
+		\item Continuous: $\{x(t) : t \geq 0\}$ where $x(0) = x_0$
+	\end{itemize}
+\end{definition}
+\begin{definition}[Invariant Set]
+A set $S \subseteq \mathcal{X}$ is \textbf{invariant} if trajectories starting in $S$ remain in $S$ for all time.
+\end{definition}
+\section{2. Stability Theory}
+
+\subsection{2.1 Equilibrium Points}
+
+\begin{definition}[Equilibrium Point]
+A point $x^* \in \mathcal{X}$ is an \textbf{equilibrium point} (fixed point) if:
+	\begin{itemize}
+		\item Discrete: $f(x^*) = x^*$
+		\item Continuous: $f(x^*) = 0$
+	\end{itemize}
+\end{definition}
+\subsection{2.2 Types of Stability}
+
+Let $x^*$ be an equilibrium point and consider trajectories starting near $x^*$.
+
+\begin{definition}[Stability (Lyapunov)]
+$x^*$ is \textbf{stable} if for every $\varepsilon > 0$, there exists $\delta > 0$ such that:
+\[
+\|x_0 - x^*\| < \delta \implies \|x_t - x^*\| < \varepsilon \text{ for all } t \geq 0
+\]
+\end{definition}
+\begin{definition}[Asymptotic Stability]
+$x^*$ is \textbf{asymptotically stable} if it is stable and additionally:
+\[
+\lim_{t \to \infty} x_t = x^* \text{ for all } x_0 \text{ in some neighborhood of } x^*
+\]
+\end{definition}
+\begin{definition}[Exponential Stability]
+$x^*$ is \textbf{exponentially stable} if there exist constants $C > 0$ and $\alpha > 0$ such that:
+\[
+\|x_t - x^*\| \leq C\|x_0 - x^*\|e^{-\alpha t}
+\]
+\end{definition}
+\subsection{2.3 Global vs Local Stability}
+
+\begin{itemize}
+	\item \textbf{Local stability}: Properties hold in a neighborhood of $x^*$
+	\item \textbf{Global stability}: Properties hold for all initial conditions in $\mathcal{X}$
+\end{itemize}
+
+\section{3. Lyapunov Functions in Deterministic Systems}
+
+\subsection{3.1 The Lyapunov Function Concept}
+
+\begin{definition}[Lyapunov Function (Deterministic)]
+For a dynamical system with equilibrium $x^*$, a function $V: \mathcal{X} \to \mathbb{R}$ is a \textbf{Lyapunov function} if:
+	\begin{enumerate}
+		\item $V(x^*) = 0$ and $V(x) > 0$ for $x \neq x^*$ (positive definite)
+		\item $V$ is continuous
+		\item $\frac{dV}{dt} \leq 0$ along trajectories (non-increasing)
+	\end{enumerate}
+\end{definition}
+\subsection{3.2 The Lyapunov Stability Theorem}
+
+\begin{theorem}[Lyapunov's Direct Method]
+Consider the system $\dot{x} = f(x)$ with equilibrium $x^* = 0$. If there exists a Lyapunov function $V$ such that:
+	\begin{enumerate}
+		\item $V(0) = 0$ and $V(x) > 0$ for $x \neq 0$
+		\item $\dot{V}(x) = \nabla V(x) \cdot f(x) \leq 0$
+	\end{enumerate}
+Then the equilibrium is \textbf{stable}.
+If additionally $\dot{V}(x) < 0$ for $x \neq 0$, then the equilibrium is \textbf{asymptotically stable}.
+\end{theorem}
+\textbf{Proof Idea}: The function $V$ acts like an "energy" function that never increases. Level sets $\{x: V(x) = c\}$ form barriers that trajectories cannot cross outward.
+
+\subsection{3.3 Construction of Lyapunov Functions}
+
+\subsubsection{Method 1: Quadratic Forms}
+
+For linear systems $\dot{x} = Ax$, try $V(x) = x^T P x$ where $P > 0$.
+
+The condition $\dot{V} < 0$ becomes:
+\[
+\dot{V} = x^T(A^T P + PA)x < 0
+\]
+
+This requires $A^T P + PA < 0$, which is the \textbf{Lyapunov equation}.
+
+\subsubsection{Method 2: Physical Intuition}
+
+\begin{itemize}
+	\item \textbf{Mechanical systems}: Total energy $V = \frac{1}{2}mv^2 + U(x)$
+	\item \textbf{Circuit systems}: Total energy stored in capacitors and inductors
+	\item \textbf{Economic systems}: Cost or utility functions
+\end{itemize}
+
+\subsubsection{Method 3: Gradient Systems}
+
+For systems of the form $\dot{x} = -\nabla U(x)$, the function $V(x) = U(x) - U(x^*)$ is a natural Lyapunov function.
+
+\subsection{3.4 Examples}
+
+\subsubsection{Example 1: Harmonic Oscillator with Damping}
+
+Consider:
+\[
+\begin{cases}
+\dot{x} = y \\
+\dot{y} = -kx - cy
+\end{cases}
+\]
+\textbf{Lyapunov function}: $V(x,y) = \frac{1}{2}ky^2 + \frac{1}{2}x^2$ (total energy)
+
+\textbf{Verification}:
+\[
+\dot{V} = ky\dot{y} + x\dot{x} = ky(-kx - cy) + xy = -cy^2 \leq 0
+\]
+
+Since $\dot{V} < 0$ when $y \neq 0$, the origin is asymptotically stable.
+
+\subsubsection{Example 2: Pendulum}
+
+For the damped pendulum $\ddot{\theta} + c\dot{\theta} + \sin\theta = 0$:
+
+\textbf{State variables}: $x_1 = \theta$, $x_2 = \dot{\theta}$
+\textbf{System}:
+\[
+\begin{cases}
+\dot{x}_1 = x_2 \\
+\dot{x}_2 = -\sin x_1 - cx_2
+\end{cases}
+\]
+\textbf{Lyapunov function}: $V(x_1, x_2) = \frac{1}{2}x_2^2 + (1 - \cos x_1)$
+
+\textbf{Verification}:
+\[
+\dot{V} = x_2\dot{x}_2 + \sin x_1 \dot{x}_1 = x_2(-\sin x_1 - cx_2) + \sin x_1 x_2 = -cx_2^2 \leq 0
+\]
+
+\section{4. Extension to Stochastic Systems}
+
+\subsection{4.1 Stochastic Differential Equations}
+
+Consider the SDE:
+\[
+dX_t = f(X_t)dt + g(X_t)dW_t
+\]
+
+where $W_t$ is a Wiener process.
+
+\subsection{4.2 Itô's Formula}
+
+For a function $V(x,t)$ and the SDE above:
+\[
+dV(X_t,t) = \left[\frac{\partial V}{\partial t} + \frac{\partial V}{\partial x} \cdot f(X_t) + \frac{1}{2}\text{tr}(g^T(X_t) \nabla^2 V g(X_t))\right]dt + \frac{\partial V}{\partial x} \cdot g(X_t)dW_t
+\]
+
+\subsection{4.3 Lyapunov Functions for SDEs}
+
+\begin{definition}[Lyapunov Function (Stochastic)]
+A function $V: \mathbb{R}^d \to \mathbb{R}_+$ is a \textbf{Lyapunov function} for the SDE if:
+	\begin{enumerate}
+		\item $V(x) \geq 0$ with $V(x) = 0$ iff $x = 0$
+		\item $\mathcal{L}V(x) \leq 0$ where $\mathcal{L}$ is the generator:
+\[
+\mathcal{L}V(x) = \frac{\partial V}{\partial x} \cdot f(x) + \frac{1}{2}\text{tr}(g^T(x) \nabla^2 V g(x))
+\]
+	\end{enumerate}
+\end{definition}
+\subsection{4.4 Stability in Probability}
+
+\begin{theorem}[Stochastic Stability]
+If there exists a Lyapunov function $V$ with $\mathcal{L}V \leq 0$, then the solution is \textbf{stable in probability}.
+If additionally $\mathcal{L}V \leq -cV$ for some $c > 0$, then the solution is \textbf{exponentially stable in mean square}.
+\end{theorem}
+\section{5. Connection to Markov Chains}
+
+\subsection{5.1 Discrete-Time Markov Chains}
+
+A sequence $(X_n)_{n \geq 0}$ is a \textbf{Markov chain} if:
+\[
+\mathbb{P}(X_{n+1} = j | X_0, X_1, \ldots, X_n) = \mathbb{P}(X_{n+1} = j | X_n)
+\]
+
+\subsection{5.2 Markov Operators}
+
+\begin{definition}[Markov Operator]
+The \textbf{Markov operator} $P$ acts on functions $f$ as:
+\[
+(Pf)(x) = \mathbb{E}[f(X_1) | X_0 = x] = \sum_y P(x,y)f(y)
+\]
+\end{definition}
+\subsection{5.3 Lyapunov Functions for Markov Chains}
+
+\begin{definition}[Lyapunov Function (Markov Chain)]
+A function $V: \mathcal{X} \to [0,\infty)$ is a \textbf{Lyapunov function} if:
+	\begin{enumerate}
+		\item $V$ has compact sublevel sets
+		\item There exist $\lambda \in (0,1)$ and $b < \infty$ such that:
+\[
+PV(x) \leq \lambda V(x) + b
+\]
+	\end{enumerate}
+\end{definition}
+This is the \textbf{Foster-Lyapunov drift condition}.
+
+\subsection{5.4 Applications to Ergodicity}
+
+\begin{theorem}[Ergodic Theorem]
+If a Markov chain has a Lyapunov function, then:
+	\begin{enumerate}
+		\item The chain has an invariant measure $\pi$
+		\item The chain converges to $\pi$ geometrically fast
+		\item The invariant measure has finite moments: $\mathbb{E}_\pi[V] < \infty$
+	\end{enumerate}
+\end{theorem}
+\section{6. Mathematical Tools and Techniques}
+
+\subsection{6.1 Supermartingales}
+
+\begin{definition}[Supermartingale]
+A sequence $(M_n)$ is a \textbf{supermartingale} if:
+\[
+\mathbb{E}[M_{n+1} | \mathcal{F}_n] \leq M_n
+\]
+\end{definition}
+\textbf{Connection to Lyapunov functions}: If $V$ is a Lyapunov function for a Markov chain, then $V(X_n)$ is a supermartingale.
+
+\subsection{6.2 Optional Stopping Theorem}
+
+\begin{theorem}[Optional Stopping]
+For a supermartingale $(M_n)$ and a stopping time $\tau$:
+\[
+\mathbb{E}[M_\tau] \leq \mathbb{E}[M_0]
+\]
+\end{theorem}
+\textbf{Application}: Gives bounds on expected hitting times and exit probabilities.
+
+\subsection{6.3 Concentration Inequalities}
+
+\subsubsection{Azuma-Hoeffding Inequality}
+
+For a martingale $(M_n)$ with bounded differences:
+\[
+\mathbb{P}(M_n - M_0 \geq t) \leq e^{-t^2/(2\sum_{i=1}^n c_i^2)}
+\]
+
+\subsubsection{Chernoff Bound}
+
+For sums of independent random variables:
+\[
+\mathbb{P}(S_n \geq t) \leq e^{-\lambda t}\mathbb{E}[e^{\lambda S_n}]
+\]
+
+\subsection{6.4 Functional Analysis Tools}
+
+\subsubsection{Banach Spaces}
+
+\begin{itemize}
+	\item \textbf{Completeness}: Every Cauchy sequence converges
+	\item \textbf{Norms}: $\|f\|_\infty = \sup_x |f(x)|$, $\|f\|_p = (\int |f|^p)^{1/p}$
+\end{itemize}
+
+\subsubsection{Operators}
+
+\begin{itemize}
+	\item \textbf{Bounded operators}: $\|Pf\| \leq C\|f\|$
+	\item \textbf{Compact operators}: Map bounded sets to relatively compact sets
+	\item \textbf{Spectral theory}: Eigenvalues and eigenfunctions
+\end{itemize}
+
+\section{7. Advanced Topics}
+
+\subsection{7.1 Generators of Markov Processes}
+
+For a continuous-time Markov process $(X_t)$:
+\[
+(\mathcal{L}f)(x) = \lim_{t \to 0} \frac{1}{t}[\mathbb{E}^x[f(X_t)] - f(x)]
+\]
+
+\subsection{7.2 Resolvent and Potential Theory}
+
+The \textbf{resolvent} operator:
+\[
+R_\lambda = (\lambda I - \mathcal{L})^{-1}
+\]
+
+\textbf{Green's function}: $G(x,y) = \int_0^\infty p_t(x,y)dt$
+
+\subsection{7.3 Large Deviations}
+
+\begin{theorem}[Cramér's Theorem]
+For i.i.d. random variables with moment generating function $M(\lambda)$:
+\[
+\lim_{n \to \infty} \frac{1}{n}\log \mathbb{P}(S_n \geq na) = -\sup_\lambda(\lambda a - \log M(\lambda))
+\]
+\end{theorem}
+\subsection{7.4 Ergodic Theory}
+
+\subsubsection{Birkhoff's Ergodic Theorem}
+
+For an ergodic transformation $T$:
+\[
+\lim_{n \to \infty} \frac{1}{n}\sum_{k=0}^{n-1} f(T^k x) = \int f d\mu
+\]
+
+\subsubsection{Mixing Properties}
+
+\begin{itemize}
+	\item \textbf{Strong mixing}: $\lim_{n \to \infty} \mathbb{P}(A \cap T^{-n}B) = \mathbb{P}(A)\mathbb{P}(B)$
+	\item \textbf{Weak mixing}: $\lim_{n \to \infty} \frac{1}{n}\sum_{k=0}^{n-1} |\mathbb{P}(A \cap T^{-k}B) - \mathbb{P}(A)\mathbb{P}(B)| = 0$
+\end{itemize}
+
+\section{8. Connections to Other Areas}
+
+\subsection{8.1 Optimization Theory}
+
+\textbf{Gradient descent}: $x_{k+1} = x_k - \alpha \nabla f(x_k)$
+
+\textbf{Lyapunov function}: $V(x) = f(x) - f(x^*)$
+
+\subsection{8.2 Control Theory}
+
+\textbf{Optimal control}: Minimize $J = \int_0^\infty L(x,u)dt$ subject to $\dot{x} = f(x,u)$
+
+\textbf{Lyapunov-based control}: Design $u$ so that $V$ is a Lyapunov function for the closed-loop system.
+
+\subsection{8.3 Machine Learning}
+
+\textbf{Stochastic gradient descent}: $\theta_{k+1} = \theta_k - \alpha \nabla L(\theta_k, \xi_k)$
+
+\textbf{Convergence analysis}: Use Lyapunov functions to prove convergence to minima.
+
+\section{9. Computational Aspects}
+
+\subsection{9.1 Numerical Methods}
+
+\subsubsection{Euler-Maruyama Method}
+
+For SDE $dX_t = f(X_t)dt + g(X_t)dW_t$:
+\[
+X_{n+1} = X_n + f(X_n)\Delta t + g(X_n)\Delta W_n
+\]
+
+\subsubsection{Milstein Method}
+
+Higher-order scheme:
+\[
+X_{n+1} = X_n + f(X_n)\Delta t + g(X_n)\Delta W_n + \frac{1}{2}g(X_n)g'(X_n)[(\Delta W_n)^2 - \Delta t]
+\]
+
+\subsection{9.2 Simulation Techniques}
+
+\subsubsection{Monte Carlo Methods}
+
+\begin{itemize}
+	\item \textbf{Importance sampling}: Change of measure to reduce variance
+	\item \textbf{Markov Chain Monte Carlo}: Sample from complex distributions
+	\item \textbf{Multilevel Monte Carlo}: Reduce computational cost
+\end{itemize}
+
+\subsubsection{Quasi-Monte Carlo}
+
+Use low-discrepancy sequences instead of random numbers.
+
+\subsection{9.3 Verification of Lyapunov Conditions}
+
+\subsubsection{SOS (Sum of Squares) Programming}
+
+Express $V$ and $-\dot{V}$ as sums of squares of polynomials.
+
+\subsubsection{Semidefinite Programming}
+
+Relaxation of polynomial optimization problems.
+
+\section{10. Historical Notes and Further Reading}
+
+\subsection{10.1 Historical Development}
+
+\begin{itemize}
+	\item \textbf{1892}: A.M. Lyapunov introduces the direct method
+	\item \textbf{1931}: A.N. Kolmogorov formalizes probability theory
+	\item \textbf{1953}: K.L. Chung develops Markov chain theory
+	\item \textbf{1960s}: R.L. Dobrushin and others develop ergodic theory
+	\item \textbf{1993}: S.P. Meyn and R.L. Tweedie unify the theory
+\end{itemize}
+
+\subsection{10.2 Key References}
+
+\subsubsection{Foundational Texts}
+
+\begin{enumerate}
+	\item \textbf{Khalil, H.K.} (2002). \textit{Nonlinear Systems} (3rd ed.). Prentice Hall.
+	\item \textbf{Meyn, S.P. \& Tweedie, R.L.} (2009). \textit{Markov Chains and Stochastic Stability}. Cambridge University Press.
+	\item \textbf{Øksendal, B.} (2003). \textit{Stochastic Differential Equations}. Springer.
+\end{enumerate}
+
+\subsubsection{Advanced Topics}
+
+\begin{enumerate}
+	\item \textbf{Ethier, S.N. \& Kurtz, T.G.} (1986). \textit{Markov Processes: Characterization and Convergence}. Wiley.
+	\item \textbf{Revuz, D. \& Yor, M.} (1999). \textit{Continuous Martingales and Brownian Motion}. Springer.
+	\item \textbf{Durrett, R.} (2019). \textit{Probability: Theory and Examples}. Cambridge University Press.
+\end{enumerate}
+
+\subsection{10.3 Modern Applications}
+
+\begin{itemize}
+	\item \textbf{Financial mathematics}: Risk management, portfolio optimization
+	\item \textbf{Biology}: Population dynamics, epidemiology
+	\item \textbf{Engineering}: Control systems, signal processing
+	\item \textbf{Computer science}: Algorithm analysis, machine learning
+	\item \textbf{Physics}: Statistical mechanics, quantum systems
+\end{itemize}
+
+\section{Summary}
+
+This foundation provides the essential mathematical background for understanding:
+
+\begin{enumerate}
+	\item \textbf{Deterministic stability theory} and classical Lyapunov functions
+	\item \textbf{Stochastic processes} and their stability properties
+	\item \textbf{Markov chain theory} and the Foster-Lyapunov drift conditions
+	\item \textbf{Connections between} different areas of mathematics and applications
+\end{enumerate}
+
+The key insight is that Lyapunov functions provide a unified framework for analyzing stability and convergence across deterministic and stochastic systems, with applications ranging from classical mechanics to modern machine learning algorithms.
+
+\textbf{Next Steps}: With this foundation, you can now dive deeper into the specific techniques for finding Lyapunov functions for Markov chains, as covered in your other lecture notes.
+
+
+\end{document}

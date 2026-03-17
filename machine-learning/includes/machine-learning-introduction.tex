@@ -1,0 +1,584 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter{Machine Learning Methods: A Comprehensive Introduction}
+
+\section{Overview}
+
+Machine learning is a fundamental branch of artificial intelligence that enables computers to learn and make decisions from data without being explicitly programmed. This introduction covers the core concepts, methodologies, and applications of various machine learning approaches based on fundamental principles and practical implementations.
+
+\section{1. Fundamentals of Machine Learning}
+
+\subsection{1.1 Basic Concepts and Terminology}
+
+Machine learning revolves around several key concepts:
+
+\begin{itemize}
+	\item \textbf{Learning Algorithm}: A computational procedure that improves performance on a specific task through experience
+	\item \textbf{Training Data}: The dataset used to train the model
+	\item \textbf{Feature Space}: The mathematical space in which input data is represented
+	\item \textbf{Hypothesis Space}: The set of all possible hypotheses that a learning algorithm can consider
+	\item \textbf{Inductive Bias}: The assumptions made by a learning algorithm to generalize from training data
+\end{itemize}
+
+\subsection{1.2 Hypothesis Space and Inductive Bias}
+
+The \textbf{hypothesis space} defines the scope of models that an algorithm can learn. A well-defined hypothesis space balances between:
+
+\begin{itemize}
+	\item \textbf{Expressiveness}: Ability to represent complex relationships
+	\item \textbf{Tractability}: Computational feasibility of learning
+\end{itemize}
+
+\textbf{Inductive bias} is crucial for generalization, providing assumptions that guide learning when multiple hypotheses are consistent with training data.
+
+\subsection{1.3 Development History and Current Applications}
+
+Machine learning has evolved through several paradigms:
+
+\begin{itemize}
+	\item \textbf{Symbolism}: Logic-based reasoning systems
+	\item \textbf{Connectionism}: Neural network approaches
+	\item \textbf{Evolutionism}: Genetic algorithms and evolutionary computation
+	\item \textbf{Bayesianism}: Probabilistic reasoning methods
+	\item \textbf{Analogism}: Instance-based and kernel methods
+\end{itemize}
+
+\section{2. Model Evaluation and Selection}
+
+\subsection{2.1 Empirical Error and Overfitting}
+
+\textbf{Overfitting} occurs when a model performs well on training data but poorly on unseen data. Key concepts include:
+
+\begin{itemize}
+	\item \textbf{Training Error}: Performance on the training dataset
+	\item \textbf{Generalization Error}: Expected performance on new, unseen data
+	\item \textbf{Model Complexity}: The capacity of a model to fit various patterns
+\end{itemize}
+
+\subsection{2.2 Evaluation Methods}
+
+Common evaluation strategies:
+
+\begin{itemize}
+	\item \textbf{Holdout Method}: Split data into training and testing sets
+	\item \textbf{Cross-Validation}: Multiple rounds of training and testing with different data splits
+	\item \textbf{Bootstrap Sampling}: Sampling with replacement to create multiple datasets
+\end{itemize}
+
+\subsection{2.3 Performance Metrics}
+
+Different metrics for different tasks:
+
+\textbf{Classification Metrics}:
+
+\begin{itemize}
+	\item Accuracy, Precision, Recall, F1-Score
+	\item ROC Curves and AUC
+	\item Confusion Matrix
+\end{itemize}
+
+\textbf{Regression Metrics}:
+
+\begin{itemize}
+	\item Mean Squared Error (MSE)
+	\item Mean Absolute Error (MAE)
+	\item R-squared
+\end{itemize}
+
+\subsection{2.4 Bias-Variance Tradeoff}
+
+The fundamental tradeoff in machine learning:
+
+\begin{itemize}
+	\item \textbf{Bias}: Error due to overly simplistic assumptions
+	\item \textbf{Variance}: Error due to sensitivity to small fluctuations in training data
+	\item \textbf{Optimal Model}: Minimizes total error = bias² + variance + noise
+\end{itemize}
+
+\section{3. Linear Models}
+
+\subsection{3.1 Linear Regression}
+
+The foundation of many machine learning methods:
+\[
+y = w_0 + w_1x_1 + w_2x_2 + \cdots + w_dx_d
+\]
+
+\textbf{Key Features}:
+
+\begin{itemize}
+	\item Simple and interpretable
+	\item Closed-form solution available
+	\item Forms basis for more complex models
+\end{itemize}
+
+\subsection{3.2 Logistic Regression}
+
+Extends linear models to classification:
+\[
+P(y=1|x) = \frac{1}{1 + e^{-(w^Tx + b)}}
+\]
+
+\textbf{Advantages}:
+
+\begin{itemize}
+	\item Probabilistic output
+	\item No assumption about feature distribution
+	\item Less prone to overfitting
+\end{itemize}
+
+\subsection{3.3 Linear Discriminant Analysis (LDA)}
+
+\textbf{Core Idea}: Find linear combinations of features that best separate classes
+
+\textbf{Assumptions}:
+
+\begin{itemize}
+	\item Features follow multivariate Gaussian distribution
+	\item Equal covariance matrices across classes
+\end{itemize}
+
+\subsection{3.4 Multi-class Learning and Class Imbalance}
+
+\textbf{Strategies for Multi-class Problems}:
+
+\begin{itemize}
+	\item One-vs-One (OvO)
+	\item One-vs-Rest (OvR)
+	\item Many-vs-Many (MvM)
+\end{itemize}
+
+\textbf{Class Imbalance Solutions}:
+
+\begin{itemize}
+	\item Resampling techniques
+	\item Cost-sensitive learning
+	\item Ensemble methods
+\end{itemize}
+
+\section{4. Decision Trees}
+
+\subsection{4.1 Basic Principles}
+
+Decision trees create a hierarchical set of if-else conditions:
+
+\textbf{Advantages}:
+
+\begin{itemize}
+	\item Highly interpretable
+	\item Handles both numerical and categorical features
+	\item No assumptions about data distribution
+\end{itemize}
+
+\subsection{4.2 Splitting Criteria}
+
+\textbf{Information Gain}: Based on entropy reduction
+\[
+\text{Gain}(D,a) = \text{Ent}(D) - \sum_{v=1}^V \frac{|D^v|}{|D|} \text{Ent}(D^v)
+\]
+
+\textbf{Gini Index}: Measures node impurity
+\[
+\text{Gini}(D) = 1 - \sum_{k=1}^{|\mathcal{Y}|} p_k^2
+\]
+
+\subsection{4.3 Pruning Techniques}
+
+\textbf{Pre-pruning}: Stop growing tree early
+\textbf{Post-pruning}: Remove branches after tree construction
+
+\section{5. Neural Networks}
+
+\subsection{5.1 Perceptron and Multi-layer Networks}
+
+\textbf{Perceptron}: Simple linear classifier
+\textbf{Multi-layer Perceptron (MLP)}: Universal function approximator
+
+\subsection{5.2 Backpropagation Algorithm}
+
+\textbf{Core Idea}: Efficiently compute gradients using chain rule
+
+\textbf{Steps}:
+
+\begin{enumerate}
+	\item Forward pass: Compute predictions
+	\item Backward pass: Compute gradients
+	\item Update weights using gradient descent
+\end{enumerate}
+
+\subsection{5.3 Deep Learning}
+
+\textbf{Key Innovations}:
+
+\begin{itemize}
+	\item Deep architectures with many layers
+	\item Specialized architectures (CNN, RNN, Transformers)
+	\item Advanced optimization techniques
+	\item Regularization methods (Dropout, Batch Normalization)
+\end{itemize}
+
+\section{6. Support Vector Machines (SVM)}
+
+\subsection{6.1 Maximum Margin Principle}
+
+\textbf{Core Idea}: Find hyperplane that maximizes margin between classes
+
+\textbf{Optimization Problem}:
+\[
+\min_{w,b} \frac{1}{2}||w||^2 \text{ subject to } y_i(w^Tx_i + b) \geq 1
+\]
+
+\subsection{6.2 Kernel Methods}
+
+\textbf{Kernel Trick}: Implicitly map data to higher-dimensional space
+
+\textbf{Common Kernels}:
+
+\begin{itemize}
+	\item Linear: $K(x_i, x_j) = x_i^T x_j$
+	\item Polynomial: $K(x_i, x_j) = (x_i^T x_j + c)^d$
+	\item RBF: $K(x_i, x_j) = \exp(-\gamma ||x_i - x_j||^2)$
+\end{itemize}
+
+\subsection{6.3 Soft Margin and Regularization}
+
+\textbf{Soft Margin}: Allow some misclassification with penalty parameter C
+
+\section{7. Bayesian Methods}
+
+\subsection{7.1 Bayesian Decision Theory}
+
+\textbf{Bayes' Theorem}:
+\[
+P(c|x) = \frac{P(x|c)P(c)}{P(x)}
+\]
+
+\subsection{7.2 Naive Bayes Classifier}
+
+\textbf{Assumption}: Features are conditionally independent given class
+\[
+P(c|x) = \frac{P(c)}{P(x)} \prod_{i=1}^d P(x_i|c)
+\]
+
+\subsection{7.3 Bayesian Networks}
+
+\textbf{Graphical Models}: Represent probabilistic relationships between variables
+
+\subsection{7.4 EM Algorithm}
+
+\textbf{Purpose}: Parameter estimation with latent variables
+
+\textbf{Steps}:
+
+\begin{enumerate}
+	\item E-step: Compute expected values of latent variables
+	\item M-step: Maximize likelihood given expected values
+\end{enumerate}
+
+\section{8. Ensemble Learning}
+
+\subsection{8.1 Core Principles}
+
+\textbf{Wisdom of Crowds}: Combine multiple weak learners to create strong learner
+
+\subsection{8.2 Boosting Methods}
+
+\textbf{AdaBoost}: Sequentially train classifiers, focusing on misclassified examples
+
+\textbf{Gradient Boosting}: Optimize arbitrary differentiable loss functions
+
+\subsection{8.3 Bagging and Random Forests}
+
+\textbf{Bootstrap Aggregating}: Train multiple models on bootstrap samples
+
+\textbf{Random Forest}: Bagging with random feature selection
+
+\subsection{8.4 Combination Strategies}
+
+\begin{itemize}
+	\item \textbf{Voting}: Majority vote or weighted voting
+	\item \textbf{Averaging}: Simple or weighted averaging
+	\item \textbf{Stacking}: Meta-learner combines base learners
+\end{itemize}
+
+\section{9. Clustering}
+
+\subsection{9.1 Unsupervised Learning Paradigm}
+
+\textbf{Goal}: Discover hidden patterns in data without labeled examples
+
+\subsection{9.2 Prototype-based Clustering}
+
+\textbf{K-Means}: Partition data into k clusters
+\[
+J = \sum_{i=1}^k \sum_{x \in C_i} ||x - \mu_i||^2
+\]
+
+\subsection{9.3 Density-based Clustering}
+
+\textbf{DBSCAN}: Groups together points in high-density areas
+
+\subsection{9.4 Hierarchical Clustering}
+
+\textbf{Agglomerative}: Bottom-up merging
+\textbf{Divisive}: Top-down splitting
+
+\section{10. Dimensionality Reduction and Metric Learning}
+
+\subsection{10.1 Curse of Dimensionality}
+
+\textbf{Problem}: Many algorithms perform poorly in high-dimensional spaces
+
+\subsection{10.2 Principal Component Analysis (PCA)}
+
+\textbf{Goal}: Find directions of maximum variance
+
+\textbf{Mathematical Formulation}: Eigenvalue decomposition of covariance matrix
+
+\subsection{10.3 Manifold Learning}
+
+\textbf{Assumption}: High-dimensional data lies on low-dimensional manifold
+
+\textbf{Methods}:
+
+\begin{itemize}
+	\item Isomap
+	\item Locally Linear Embedding (LLE)
+	\item t-SNE
+\end{itemize}
+
+\subsection{10.4 Metric Learning}
+
+\textbf{Goal}: Learn appropriate distance metrics for specific tasks
+
+\section{11. Feature Selection and Sparse Learning}
+
+\subsection{11.1 Feature Selection Approaches}
+
+\textbf{Filter Methods}: Statistical measures independent of learning algorithm
+\textbf{Wrapper Methods}: Use learning algorithm performance as criterion
+\textbf{Embedded Methods}: Feature selection integrated into learning algorithm
+
+\subsection{11.2 L1 Regularization and Sparsity}
+
+\textbf{LASSO}: L1 penalty promotes sparse solutions
+\[
+\min_{w} ||Xw - y||^2 + \lambda ||w||_1
+\]
+
+\subsection{11.3 Compressed Sensing}
+
+\textbf{Theory}: Sparse signals can be recovered from fewer measurements than traditional sampling theory suggests
+
+\section{12. Computational Learning Theory}
+
+\subsection{12.1 PAC Learning Framework}
+
+\textbf{Probably Approximately Correct}: Theoretical framework for analyzing learning algorithms
+
+\textbf{Key Concepts}:
+
+\begin{itemize}
+	\item Sample complexity
+	\item Time complexity
+	\item Generalization bounds
+\end{itemize}
+
+\subsection{12.2 VC Dimension}
+
+\textbf{Vapnik-Chervonenkis Dimension}: Measure of model complexity
+
+\section{13. Semi-supervised Learning}
+
+\subsection{13.1 Learning with Limited Labels}
+
+\textbf{Motivation}: Labeled data is expensive, unlabeled data is abundant
+
+\subsection{13.2 Key Assumptions}
+
+\begin{itemize}
+	\item \textbf{Smoothness}: Nearby points likely have same label
+	\item \textbf{Cluster}: Points in same cluster likely have same label
+	\item \textbf{Manifold}: Data lies on low-dimensional manifold
+\end{itemize}
+
+\subsection{13.3 Methods}
+
+\textbf{Co-training}: Use multiple views of data
+\textbf{Graph-based}: Propagate labels through graph structure
+
+\section{14. Probabilistic Graphical Models}
+
+\subsection{14.1 Hidden Markov Models (HMM)}
+
+\textbf{Applications}: Sequential data modeling
+
+\subsection{14.2 Markov Random Fields}
+
+\textbf{Undirected Graphical Models}: Model dependencies between variables
+
+\subsection{14.3 Conditional Random Fields (CRF)}
+
+\textbf{Discriminative Models}: For structured prediction tasks
+
+\section{15. Rule Learning}
+
+\subsection{15.1 Symbolic Learning}
+
+\textbf{Goal}: Extract interpretable if-then rules from data
+
+\subsection{15.2 Sequential Covering}
+
+\textbf{Strategy}: Learn rules that cover positive examples
+
+\subsection{15.3 Inductive Logic Programming}
+
+\textbf{Integration}: Combine machine learning with logic programming
+
+\section{16. Reinforcement Learning}
+
+\subsection{16.1 Learning from Interaction}
+
+\textbf{Paradigm}: Agent learns through trial and error in environment
+
+\subsection{16.2 Key Components}
+
+\begin{itemize}
+	\item \textbf{State}: Current situation
+	\item \textbf{Action}: Available choices
+	\item \textbf{Reward}: Feedback signal
+	\item \textbf{Policy}: Strategy for selecting actions
+\end{itemize}
+
+\subsection{16.3 Value Functions}
+
+\textbf{State Value}: $V^\pi(s) = E[G_t | S_t = s]$
+\textbf{Action Value}: $Q^\pi(s,a) = E[G_t | S_t = s, A_t = a]$
+
+\subsection{16.4 Learning Approaches}
+
+\textbf{Model-based}: Learn model of environment
+\textbf{Model-free}: Learn directly from experience
+
+\textbf{Temporal Difference Learning}: Learn from prediction errors
+
+\section{Conclusion}
+
+Machine learning encompasses a rich variety of methods, each with its own strengths and appropriate applications. The choice of method depends on:
+
+\begin{itemize}
+	\item \textbf{Nature of the problem}: Classification, regression, clustering, etc.
+	\item \textbf{Data characteristics}: Size, dimensionality, noise level
+	\item \textbf{Performance requirements}: Accuracy, interpretability, computational efficiency
+	\item \textbf{Domain constraints}: Available labeled data, real-time requirements
+\end{itemize}
+
+Success in machine learning requires understanding both the theoretical foundations and practical considerations of these diverse approaches. The field continues to evolve rapidly, with new methods and applications emerging regularly, particularly in deep learning and its variants.
+
+
+\end{document}

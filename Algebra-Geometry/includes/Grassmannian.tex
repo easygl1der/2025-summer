@@ -1,0 +1,223 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\section{Why study Grassmannian?}
+
+\begin{definition}[Grassmannian $\mathrm{Gr}(k, n)$]
+The \textbf{Grassmannian} $\mathrm{Gr}(k, n)$ is the set of all $k$-dimensional linear subspaces of an $n$-dimensional vector space $\mathbb{F}^n$ (where $\mathbb{F}$ is usually $\mathbb{R}$ or $\mathbb{C}$).
+Formally:
+\[
+\mathrm{Gr}(k, n) = \{ \text{\(k\)-dimensional subspaces of } \mathbb{F}^n \}.
+\]	\begin{itemize}
+		\item Example: $\mathrm{Gr}(1, n)$ is the \textbf{projective space} $\mathbb{P}^{n-1}$, since a 1D subspace is just a line through the origin.
+		\item Example: $\mathrm{Gr}(n-1, n)$ can be thought of as the set of hyperplanes through the origin.
+	\end{itemize}
+The Grassmannian is not just a set — it is a \textbf{smooth manifold} (and even an \textbf{algebraic variety} when $\mathbb{F} = \mathbb{C}$).
+Its \textbf{dimension} is:
+\[
+\dim_{\mathbb{F}} \mathrm{Gr}(k, n) = k(n-k).
+\]
+\end{definition}
+Imagine $\mathbb{R}^n$. You can look at:
+
+\begin{itemize}
+	\item Points ($k=0$)
+	\item Lines through the origin ($k=1$)
+	\item Planes through the origin ($k=2$)
+	\item etc.
+\end{itemize}
+
+The Grassmannian $\mathrm{Gr}(k, n)$ is like a "space whose points are subspaces" — you can \textbf{move smoothly from one subspace to another}. This lets us treat "families of subspaces" as geometric objects themselves.
+
+A key idea:
+The Grassmannian is \textbf{homogeneous}:
+\[
+\mathrm{Gr}(k, n) \cong \frac{\mathrm{GL}(n, \mathbb{F})}{P},
+\]
+where $P$ is a \textbf{parabolic subgroup} that fixes a chosen $k$-dimensional subspace. This shows that all $k$-planes look "the same" up to a linear transformation.
+
+When $\mathbb{F} = \mathbb{C}$, $\mathrm{Gr}(k, n)$ can be embedded into projective space via \textbf{Plücker coordinates}:
+\[
+V \in \mathrm{Gr}(k, n) \quad \mapsto \quad v_1 \wedge \cdots \wedge v_k \in \mathbb{P}\big(\Lambda^k \mathbb{C}^n\big),
+\]
+where $\{v_i\}$ is a basis for $V$.
+
+The image is cut out by \textbf{quadratic Plücker relations}, making the Grassmannian a \textbf{projective algebraic variety}.
+
+This algebraic viewpoint is key in \textbf{Schubert calculus}, where we study how subspaces intersect.
+
+\subsection{\textbf{Linear Algebra \& Geometry}}
+
+\begin{itemize}
+	\item \textbf{Parametrizing solutions}: If you have a family of subspaces (e.g., solution spaces to a system of equations), they can be described as points in a Grassmannian.
+	\item \textbf{Change of basis}: Studying all $k$-subspaces is like studying all possible column spaces of $n \times k$ matrices up to linear transformations.
+\end{itemize}
+
+\subsection{\textbf{Algebraic Geometry}}
+
+\begin{itemize}
+	\item Grassmannians are \textbf{building blocks}: Many moduli spaces can be constructed from them.
+	\item \textbf{Schubert varieties} inside Grassmannians help compute intersection numbers (enumerative geometry problems like “how many lines in $\mathbb{P}^3$ meet four given lines?”).
+\end{itemize}
+
+\subsection{\textbf{Topology \& Characteristic Classes}}
+
+\begin{itemize}
+	\item Grassmannians are classifying spaces for vector bundles:
+\end{itemize}
+\[
+\mathrm{Gr}_k(\mathbb{R}^\infty) \quad\text{classifies rank-\(k\) real vector bundles}.
+\]
+\begin{itemize}
+	\item Their cohomology ring is generated by \textbf{Chern/Schubert classes}, essential in topology and geometry.
+\end{itemize}
+
+\subsection{\textbf{Representation Theory}}
+
+\begin{itemize}
+	\item As homogeneous spaces $G/P$, Grassmannians are examples of \textbf{flag varieties}, and their geometry reflects the structure of Lie groups and Lie algebras.
+\end{itemize}
+
+\subsection{\textbf{Physics}}
+
+\begin{itemize}
+	\item In \textbf{quantum field theory} and \textbf{string theory}, Grassmannians appear in:
+	\begin{itemize}
+		\item \textbf{Gauge theory}: Moduli of certain field configurations are often Grassmannians or their generalizations.
+		\item \textbf{Twistor theory}: The "momentum space" in some scattering amplitude formulations is a Grassmannian.
+	\end{itemize}
+\end{itemize}
+
+\subsection{\textbf{Applied Mathematics}}
+
+\begin{itemize}
+	\item \textbf{Statistics \& Data Science}: Subspaces model principal components in PCA; the set of all $k$-dimensional subspaces is the search space in \textbf{subspace methods}.
+	\item \textbf{Signal Processing}: In array processing and MIMO systems, signals lie in subspaces, and the Grassmannian provides a natural search domain.
+\end{itemize}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|}
+		\hline
+		Aspect & Why it matters \\
+		\hline
+		\textbf{Geometry} & Smooth, compact, homogeneous manifold parametrizing subspaces \\
+		\hline
+		\textbf{Algebra} & Projective variety with explicit Plücker equations \\
+		\hline
+		\textbf{Topology} & Classifying space for vector bundles \\
+		\hline
+		\textbf{Combinatorics} & Schubert calculus counts geometric configurations \\
+		\hline
+		\textbf{Applications} & From quantum physics to machine learning \\
+		\hline
+	\end{tabular}
+\end{table}
+If you like, I can \textbf{follow up} by explaining \textbf{Schubert varieties inside the Grassmannian}, which are one of the main computational tools for studying it — and they connect directly to the \textit{applications in enumerative geometry}. That’s where the Grassmannian really starts to \textit{do things}.
+
+
+\end{document}

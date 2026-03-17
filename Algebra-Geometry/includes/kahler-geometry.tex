@@ -1,0 +1,406 @@
+\documentclass{ctexart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={数学笔记},
+    pdfauthor={乐绎华},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{proposition}[theorem]{命题}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{problem}[theorem]{题目}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{备注}
+\newtheorem{note}[theorem]{注}
+\newtheorem{observation}[theorem]{观察}
+
+% 解答环境
+\newtheorem*{solution}{解}
+\newtheorem*{proof*}{证明}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华}
+\title{数学笔记}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\href{https://moroianu.perso.math.cnrs.fr/tex/kg.pdf}{kg.dvi}
+
+Examples:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Applications:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082313.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082312.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The motivation of the definition of $J$ is from $j$, the multiplication by $i$ on $\mathbb{C}$ via the identification of $\mathbb{R}^{2}$ with $\mathbb{C}$ given by $z=x+iy\mapsto(x,y)$. The endomorphism $j$ can be expressed in the canonical base as
+\[
+j=\begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix}
+\]
+The differential of $F=f+ig:U\subset \mathbb{C}\to \mathbb{C}$ (viewed as a real function $F:U\subset \mathbb{R}^{2}\to \mathbb{R}^{2}$) is the linear map
+\[
+F_{*}=\begin{pmatrix}
+\frac{ \partial f }{ \partial x }  & \frac{ \partial f }{ \partial y }  \\
+\frac{ \partial g }{ \partial x }  & \frac{ \partial g }{ \partial y } 
+\end{pmatrix}
+\]
+Then it is easy to check that the Cauchy-Riemann relations are equivalent to the commutation relation $jF_{*}=F_{*}j$.
+
+Then for $F:U\subset \mathbb{C}^{n}\to \mathbb{C}^{m}$, it is holomorphic iff the diffrerential $F_{*}$ of $F$ as real map $F:\mathbb{R}^{2n}\to \mathbb{R}^{2m}$ satisfies $j_mF_{*}=F_{*}j_n$, where
+\[
+j_m=\begin{pmatrix}
+0 & -I _m \\
+I _m & 0
+\end{pmatrix}
+\]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082313.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Almost complex structure $J$ :
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+$J_{U}$ does not depend on $U$ and their collection is a well-defined tensor $J$ on $M$. This tensor clearly satisfies $J^{2}=-id$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+A $(1,1)$ -tensor $J$ is a type of tensor that takes in one vector and one covector (a linear function) and outputs a scalar.
+
+A complex manifold is thus in a canonical way an almost complex manifold.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\textbf{Integrability} of the distribution $T^{0,1}M$ means that its sections are closed under the Lie bracket, which is a condition that ensires the existence of a compatible complex coordinate system. In other words:
+\[
+[X,Y]\in \Gamma(D)\qquad \forall X,Y\in\Gamma(D)
+\]
+where the distribution $D$ is a subbundle of $T_{\mathbb{C}}M$ and $\Gamma(D)$ is a vector field in $D$.
+
+
+Suppose that $J$ comes from a holomorphic structure on $M$. Consider a local chart $(U,\phi_{U})$ and let $z_{\alpha}=x_{\alpha}+iy_{\alpha}$ be the $\alpha$ -th component of $\phi_{U}$. If $\{ e_1,\dots,e_{2m} \}$ denotes the standard basis of $\mathbb{R}^{2m}$, we have by definition:
+\[
+\frac{ \partial   }{ \partial x_{\alpha} } =(\phi_{U})^{-1}_{*}(e_{\alpha}),\qquad \frac{ \partial   }{ \partial y_{\alpha} } =(\phi_{U})^{-1}_{*}(e_{m+\alpha})
+\]
+Moreover, $j_m(e_{\alpha})=e_{m+\alpha}$, so we obtain directly from the defintion
+\[
+J\left( \frac{ \partial   }{ \partial x_{\alpha} }  \right)=\frac{ \partial   }{ \partial y_{\alpha} }
+\]
+We now make the following notations
+\[
+\frac{\partial}{\partial z_\alpha}:=\frac{1}{2}\left(\frac{\partial}{\partial x_\alpha}-i \frac{\partial}{\partial y_\alpha}\right), \quad \frac{\partial}{\partial \bar{z}_\alpha}:=\frac{1}{2}\left(\frac{\partial}{\partial x_\alpha}+i \frac{\partial}{\partial y_\alpha}\right) .
+\]
+Suppose that $u_\alpha, v_\alpha$ is another local system of coordinates, satisfying
+\[
+\frac{\partial}{\partial v_\alpha}=J \frac{\partial}{\partial u_\alpha}
+\]
+We then have
+\[
+\frac{\partial u_\beta}{\partial x_\alpha}=\frac{\partial v_\beta}{\partial y_\alpha} \quad \text { and } \quad \frac{\partial u_\beta}{\partial y_\alpha}=-\frac{\partial v_\beta}{\partial x_\alpha},
+\]
+thus the transition functions are holomorphic.
+
+\begin{exercise}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082711.png}
+% \caption{}
+\label{}
+\end{figure}\label{7c5a9f}
+\end{exercise}
+
+\begin{proof}
+\[
+\dots=\begin{pmatrix}
+A+iB & B \\
+O & A-iB
+\end{pmatrix}
+\]
+Then
+\[
+\det \begin{pmatrix}
+A & B \\
+-B & A
+\end{pmatrix}=\det (A+iB)\cdot \det(A-iB)=\det(A+iB)\cdot  \overline{\det(A+iB)}=\lvert \det(A+iB) \rvert ^{2}>0
+\]
+\end{proof}
+
+\begin{exercise}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082711.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{exercise}
+A smooth manifold is \textbf{orientable} if you can find an \textbf{oriented atlas}.
+
+Given a collection of coordinate charts $(U_k,\phi _k)$ that covers the manifold, we need to show that the Jacobian determinant of all transition functions $\phi _j\circ \phi _k^{-1}$ is everywhere positive.
+
+Under the basis $(v_1,\dots,v_n,Jv_1,\dots,Jv_n)$, any transition functions have the real matrix form
+\[
+\begin{pmatrix}
+A & B \\
+-B & A
+\end{pmatrix}
+\]
+which has strictly positive determinant by \cref{7c5a9f} .
+
+\section{Holomorphic forms and vector fields}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-kahler-geometry-2025082314.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082315.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082315.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082713.png}
+% \caption{}
+\label{}
+\end{figure}
+$[\cdot,\cdot]$ is the Lie Bracket, which is defined by
+\[
+[X,Y](f)=X(Y(f))-Y(X(f))
+\]
+\begin{proposition}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082713.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-kahler-geometry-2025082713.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{proposition}
+\begin{proof}
+Read.
+\end{proof}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-kahler-geometry-2025082713.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082714.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082714.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082715.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\section{Hermitian bundles}
+
+Let $M$ be a differentiable manifold (not necessarily complex) and let $E\to M$ be a \underline{complex vector bundle} over $M$, which means $E$ is a space with a projection map to $M$, and the fibers over each point in $M$ are complex vector space.
+
+\begin{definition}[connection]
+A ($\mathbb{C}$ -linear) connection on a $E$ is a $\mathbb{C}$ -linear differential operator $\nabla:C^{\infty}(E)\to C^{\infty}(\Lambda^{1}(E))$ satisfying the Leibniz rule
+\[
+\nabla(f\sigma)=df\otimes \sigma+f\nabla\sigma,\qquad \forall f\in C^{\infty}(M)
+\]
+\end{definition}
+$C^{\infty}(\Lambda^{1}(E))$ is the space of $E$ -valued 1-forms, where $\Lambda^{1}(E)$ denotes the bundle of $E$ -valued 1-forms over $M$.
+
+One can extend any connection to the bundles of $E$ -valued $p$ -forms on $M$ by
+\[
+\nabla(\omega \otimes \sigma)=d\omega \otimes \sigma+(-1)^{p}\omega \wedge \nabla\sigma
+\]
+where the wedge product has to be understood as
+\[
+\omega \wedge \nabla\sigma\coloneqq \sum_{i=1}^{n} \omega \wedge e^{ * }_i\otimes \nabla_{e_i}\sigma
+\]
+for any local basis $\{ e_i \}$ of $TM$ with dual basis $\{ e^{ * }_i \}$. $\nabla_{e_i}\sigma$ is the covariant derivative along the basis vector $e_i$.
+
+\begin{definition}[curvature]
+The \textbf{curvature} of $\nabla$ is the $\text{End}(E)$ -valued 2-form $R^{\nabla}$ defined by
+\[
+R^{\nabla}(\sigma)\coloneqq \nabla(\nabla\sigma)\qquad \forall \sigma\in C^{\infty}(E)
+\]
+\end{definition}
+To check that this is indeed tensorial (i.e. depends on $\sigma$ and not on $f$), we can write
+\[
+\nabla^{2}(f\sigma)=\nabla(df\otimes \sigma+f\nabla\sigma)=\underbrace{ d^{2}f }_{ =0 }\otimes \sigma-df\wedge \nabla\sigma+df\wedge \nabla\sigma+f\nabla^{2}\sigma=f\nabla^{2}\sigma
+\]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{kahler-geometry-2025082819.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-kahler-geometry-2025082819.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-kahler-geometry-2025082819.png}
+% \caption{}
+\label{}
+\end{figure}
+
+
+\end{document}

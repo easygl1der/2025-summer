@@ -1,0 +1,185 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={\@title},
+    pdfauthor={\@author},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\href{https://math.uchicago.edu/~dannyc/notes/kahler_notes.pdf}{kahler\_notes.pdf}
+
+\subsection{Why analysis \texorpdfstring{$p$}{p} -forms?}
+
+$p$ -forms are the natural language for talking about quantities you can integrate over $p$ -dimensional surfaces, and they behave well under smooth changes of coordinates.
+
+In geometric motivation, a $p$ -form $\omega\in \Omega^{p}(M)$ is something you can feed $p$ tangent vectors and get a number, with Linearity and Alternating properties. They are the most natural thing to assign a number to a $p$ - dimensional "slice" of your space, which works in any coordinate system and plays nicely with calculus.
+
+They are the "containers" for fluxes, circulations, and generalizations of gradients, divergences and curls in higher dimensions.
+
+\subsection{What's \texorpdfstring{$(p,q)$}{(p,q)} form?}
+
+A ($p, q$)-form is a differential form that takes $p$ holomorphic vector inputs from $T^{\prime} M$ and $q$ antiholomorphic vector inputs from $T^{\prime \prime} M$, and is alternating in each group.
+
+Equivalently, it is a smooth section of:
+\[
+\Omega^{p, q}(M):=\Lambda^p\left(T^{\prime}\right)^* \wedge \Lambda^q\left(T^{\prime \prime}\right)^*
+\]
+Local expression
+
+In holomorphic coordinates $(z^1, \ldots, z^n)$:
+\[
+\alpha \in \Omega^{p, q}(M) \text{ has the form } \alpha=\sum_{I, J} f_{I, J}(z, \bar{z}) d z^{i_1} \wedge \cdots \wedge d z^{i_p} \wedge d \bar{z}^{j_1} \wedge \cdots \wedge d \bar{z}^{j_q}
+\]
+where $I$ and $J$ are multi-indices, and $f_{I, J}$ are smooth complex-valued functions.
+
+\begin{example}
+\begin{itemize}
+		\item A $(1,0)$-form: $f_1 d z^1+f_2 d z^2$ - purely holomorphic differential.
+		\item A $(0,1)$-form: $g_1 d \bar{z}^1+g_2 d \bar{z}^2$ - purely antiholomorphic differential.
+		\item The Kähler form:
+	\end{itemize}
+\[
+\omega=\frac{i}{2} \sum g_{j \bar{k}} d z^j \wedge d \bar{z}^k
+\]is of type $(1,1)$.
+\end{example}
+\begin{note}
+Think of ( $p, q$ )-forms as "multi-dimensional measuring devices" that know how many holomorphic vs. Antiholomorphic directions they're sensitive to. In the Kähler setting, this is the language that lets geometry, topology, and complex analysis all talk to each other.
+\end{note}
+\subsection{What's the Hodge star \texorpdfstring{$*$}{*}?}
+
+The Hodge star is an operator from $\Omega^{p}$ to $\Omega^{n-p}$, where $n$ is the dimension of the manifold.
+
+\textbf{Basic idea}
+
+In Euclidean space $\mathbb{R}^n$ with an orthonormal basis $e^1, \ldots, e^n$ for 1 -forms:
+\[
+*\left(e^{i_1} \wedge \cdots \wedge e^{i_p}\right)
+\]
+is defined to be the oriented complement of that wedge, chosen so that when you wedge them together, you get the oriented volume form $e^1 \wedge \cdots \wedge e^n$, up to a sign.
+
+\begin{example}
+\begin{itemize}
+		\item $* d x=d y \wedge d z$
+		\item $*(d y \wedge d z)=d x$
+		\item $* 1=d x \wedge d y \wedge d z$ (volume form)
+		\item $*(d x \wedge d y)=d z$
+	\end{itemize}
+\end{example}
+\textbf{Formal definition}
+
+Let $M$ be an oriented Riemannian $n$-manifold. For $\alpha, \beta \in \Omega^p(M)$ (both $p$-forms), the Hodge star is the unique operator:
+\[
+*: \Omega^p(M) \rightarrow \Omega^{n-p}(M)
+\]
+such that:
+\[
+\alpha \wedge * \beta=\langle\alpha, \beta\rangle d \mathrm{vol}
+\]
+where:
+
+\begin{itemize}
+	\item $\langle\cdot, \cdot\rangle$ is the pointwise inner product on $p$-forms induced by the metric,
+	\item $d\text{vol}$ is the volume form from the metric and orientation.
+\end{itemize}
+
+
+\end{document}

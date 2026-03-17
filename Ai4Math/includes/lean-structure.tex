@@ -1,0 +1,437 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+		% 超链接设置
+		\hypersetup{
+		    colorlinks=true,
+		    linkcolor=red,
+		    filecolor=magenta,
+		    urlcolor=cyan,
+		    pdftitle={\@title},
+		    pdfauthor={\@author},
+		    pdfsubject={数学笔记},
+		    pdfkeywords={数学},
+		    bookmarksnumbered=true,
+		    bookmarksopen=true,
+		    bookmarksopenlevel=6,
+		    pdfstartview=FitH,
+		    pdfpagemode=UseOutlines,
+		    pdfborder={0 0 0}
+		}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/资料/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+Great question! Here's the \textbf{general structure} for proving theorems in Lean:
+
+
+\section{\textbf{1. Basic Theorem Structure}}
+
+\begin{lstlisting}[language=lean]
+theorem theorem_name (parameters) : statement := by
+  proof_tactics
+\end{lstlisting}
+\textbf{Components}:
+
+\begin{itemize}
+	\item \textbf{\lstinline{theorem}}: Keyword to declare a theorem
+	\item \textbf{\lstinline{theorem_name}}: Name of your theorem
+	\item \textbf{\lstinline{parameters}}: Input variables and hypotheses
+	\item \textbf{\lstinline{statement}}: What you want to prove
+	\item \textbf{\lstinline{by}}: Starts tactic mode
+	\item \textbf{\lstinline{proof_tactics}}: Step-by-step proof using tactics
+\end{itemize}
+
+
+\section{\textbf{2. Common Proof Patterns}}
+
+\subsection{\textbf{Pattern 1: Universal Quantification (\lstinline{∀})}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem : ∀ x y : ℕ, x + y = y + x := by
+  intros x y           -- Introduce variables
+  exact Nat.add_comm x y  -- Use existing lemma
+\end{lstlisting}
+\subsection{\textbf{Pattern 2: Implication (\lstinline{→})}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem (P Q : Prop) : P → (P → Q) → Q := by
+  intros hP hPQ        -- Introduce hypotheses
+  exact hPQ hP         -- Apply hPQ to hP
+\end{lstlisting}
+\subsection{\textbf{Pattern 3: Equality}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem (a b c : ℕ) : a + (b + c) = (a + b) + c := by
+  exact Nat.add_assoc a b c  -- Use associativity
+\end{lstlisting}
+\subsection{\textbf{Pattern 4: Existence (\lstinline{∃})}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem : ∃ x : ℕ, x > 0 := by
+  use 1                -- Provide witness
+  norm_num             -- Prove 1 > 0
+\end{lstlisting}
+
+\section{\textbf{3. Step-by-Step Proof Strategy}}
+
+\subsection{\textbf{Step 1: Understand the Goal}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem : some_statement := by
+  -- Look at: ⊢ some_statement
+  sorry
+\end{lstlisting}
+\subsection{\textbf{Step 2: Break Down the Goal}}
+
+Use tactics to simplify:
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem : ∀ x y : ℕ, x > 0 → y > 0 → x + y > 0 := by
+  intros x y hx hy     -- Now goal is: ⊢ x + y > 0
+  sorry
+\end{lstlisting}
+\subsection{\textbf{Step 3: Use Available Tools}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem : ∀ x y : ℕ, x > 0 → y > 0 → x + y > 0 := by
+  intros x y hx hy
+  -- Use existing lemma or build proof
+  exact Nat.add_pos hx hy
+\end{lstlisting}
+
+\section{\textbf{4. Common Proof Tactics (Toolbox)}}
+
+\subsection{\textbf{Goal Manipulation}}
+
+\begin{itemize}
+	\item \textbf{\lstinline{intros}}: Introduce variables/hypotheses
+	\item \textbf{\lstinline{apply}}: Apply a lemma/theorem
+	\item \textbf{\lstinline{exact}}: Provide exact proof term
+	\item \textbf{\lstinline{rw}}: Rewrite using equations
+	\item \textbf{\lstinline{simp}}: Simplify using known rules
+\end{itemize}
+
+\subsection{\textbf{Case Analysis}}
+
+\begin{itemize}
+	\item \textbf{\lstinline{cases}}: Split on constructors
+	\item \textbf{\lstinline{induction}}: Proof by induction
+	\item \textbf{\lstinline{by_cases}}: Split on boolean conditions
+\end{itemize}
+
+\subsection{\textbf{Existence}}
+
+\begin{itemize}
+	\item \textbf{\lstinline{use}}: Provide witness for \lstinline{∃}
+	\item \textbf{\lstinline{obtain}}: Extract witness from \lstinline{∃}
+\end{itemize}
+
+\subsection{\textbf{Logic}}
+
+\begin{itemize}
+	\item \textbf{\lstinline{constructor}}: Split \lstinline{∧} goals
+	\item \textbf{\lstinline{left/right}}: Choose side of \lstinline{∨}
+	\item \textbf{\lstinline{exfalso}}: Prove from contradiction
+\end{itemize}
+
+
+\section{\textbf{5. Complete Example}}
+
+\begin{lstlisting}[language=lean]
+-- Theorem: If x divides y and y divides z, then x divides z
+theorem dvd_trans (a b c : ℕ) : a ∣ b → b ∣ c → a ∣ c := by
+  intros hab hbc           -- Introduce hypotheses
+  -- hab : a ∣ b means ∃ k, b = a * k
+  -- hbc : b ∣ c means ∃ m, c = b * m
+  obtain ⟨k, hk⟩ := hab   -- Extract witness: b = a * k
+  obtain ⟨m, hm⟩ := hbc   -- Extract witness: c = b * m
+  use k * m                -- Claim: c = a * (k * m)
+  calc c = b * m           := hm
+       _ = (a * k) * m     := by rw [hk]
+       _ = a * (k * m)     := by rw [Nat.mul_assoc]
+\end{lstlisting}
+
+\section{\textbf{6. Proof Styles}}
+
+\subsection{\textbf{Tactic Mode} (Step-by-step)}
+
+\begin{lstlisting}[language=lean]
+theorem example1 : a + b = b + a := by
+  rw [Nat.add_comm]
+\end{lstlisting}
+\subsection{\textbf{Term Mode} (Direct)}
+
+\begin{lstlisting}[language=lean]
+theorem example2 : a + b = b + a := 
+  Nat.add_comm a b
+\end{lstlisting}
+\subsection{\textbf{Calc Mode} (Calculational)}
+
+\begin{lstlisting}[language=lean]
+theorem example3 : (a + b) + c = a + (b + c) := 
+  calc (a + b) + c = a + (b + c) := Nat.add_assoc a b c
+\end{lstlisting}
+
+\section{\textbf{7. General Workflow}}
+
+\begin{enumerate}
+	\item \textbf{State the theorem}
+	\item \textbf{\lstinline{intros}} to bring in parameters
+	\item \textbf{Analyze the goal} (\lstinline{⊢ ...})
+	\item \textbf{Choose appropriate tactics}:
+	\begin{itemize}
+		\item Apply existing lemmas (\lstinline{apply}, \lstinline{exact})
+		\item Rewrite equations (\lstinline{rw})
+		\item Case analysis (\lstinline{cases}, \lstinline{induction})
+		\item Provide witnesses (\lstinline{use})
+	\end{itemize}
+	\item \textbf{Check intermediate goals}
+	\item \textbf{Repeat until \lstinline{no goals}}
+\end{enumerate}
+
+
+\section{\textbf{8. Pro Tips}}
+
+\begin{itemize}
+	\item \textbf{Start simple}: Use \lstinline{sorry} placeholders, then fill them in
+	\item \textbf{Use \lstinline{#check}}: Verify types of lemmas
+	\item \textbf{Read the goal}: Always understand what \lstinline{⊢} shows
+	\item \textbf{Chain tactics}: Use semicolons \lstinline{;} for multiple goals
+	\item \textbf{Break complex proofs}: Use \lstinline{have} for intermediate steps
+\end{itemize}
+
+
+\section{\textbf{Template to Follow}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem (assumptions) : conclusion := by
+  -- Step 1: Introduce variables
+  intros variables_and_hypotheses
+  
+  -- Step 2: Apply relevant lemmas or analyze cases
+  apply some_lemma  -- or cases, induction, etc.
+  
+  -- Step 3: Handle remaining goals
+  exact proof_term  -- or more tactics
+\end{lstlisting}
+This structure works for most mathematical proofs in Lean!
+
+\section{How does lean understand the \lstinline{intros}}
+
+Great question! Lean understands what variables mean through \textbf{type information} and \textbf{the structure of the goal}. Here's how it works:
+
+
+\subsection{\textbf{1. Lean Reads the Goal Structure}}
+
+When Lean sees a goal like:
+
+\begin{lstlisting}[language=lean]
+⊢ ∀ {R : Type v} [inst : Mul R] [inst_1 : Add R] [RightDistribClass R] (a b c : R), 
+  (a + b) * c = a * c + b * c
+\end{lstlisting}
+It \textbf{parses the structure} from left to right:
+
+\begin{enumerate}
+	\item \lstinline{∀ {R : Type v}} → "There's an implicit type variable \lstinline{R}"
+	\item \lstinline{[inst : Mul R]} → "There's a typeclass instance for multiplication on \lstinline{R}"
+	\item \lstinline{[inst_1 : Add R]} → "There's a typeclass instance for addition on \lstinline{R}"
+	\item \lstinline{[RightDistribClass R]} → "There's a typeclass instance for right distributivity on \lstinline{R}"
+	\item \lstinline{(a b c : R)} → "There are three explicit variables of type \lstinline{R}"
+	\item \lstinline{(a + b) * c = a * c + b * c} → "The conclusion to prove"
+\end{enumerate}
+
+
+\subsection{\textbf{2. Type Information Guides Understanding}}
+
+Each variable has \textbf{explicit type annotations}:
+
+\begin{lstlisting}[language=lean]
+{R : Type v}           -- R is a type (implicit)
+[inst : Mul R]         -- inst is a Mul typeclass instance (implicit)
+[inst_1 : Add R]       -- inst_1 is an Add typeclass instance (implicit)
+[RightDistribClass R]  -- unnamed instance of RightDistribClass (implicit)
+(a b c : R)            -- a, b, c are elements of type R (explicit)
+\end{lstlisting}
+
+\subsection{\textbf{3. How \lstinline{intros} Processes This}}
+
+When you use \lstinline{intros}, Lean works \textbf{sequentially}:
+
+\begin{lstlisting}[language=lean]
+intros R inst inst_1 rightDistrib a b c
+\end{lstlisting}
+\textbf{Step by step}:
+
+\begin{enumerate}
+	\item \textbf{\lstinline{R}} → Lean knows this should be a \lstinline{Type v} (from \lstinline{{R : Type v}})
+	\item \textbf{\lstinline{inst}} → Lean knows this should be \lstinline{Mul R} (from \lstinline{[inst : Mul R]})
+	\item \textbf{\lstinline{inst_1}} → Lean knows this should be \lstinline{Add R} (from \lstinline{[inst_1 : Add R]})
+	\item \textbf{\lstinline{rightDistrib}} → Lean knows this should be \lstinline{RightDistribClass R} (from \lstinline{[RightDistribClass R]})
+	\item \textbf{\lstinline{a b c}} → Lean knows these should be elements of type \lstinline{R} (from \lstinline{(a b c : R)})
+\end{enumerate}
+
+
+\subsection{\textbf{4. Automatic Name Generation}}
+
+If you don't provide names:
+
+\begin{lstlisting}[language=lean]
+intros  -- No names provided
+\end{lstlisting}
+Lean generates names based on:
+
+\begin{itemize}
+	\item \textbf{Original names} (if available): \lstinline{R}, \lstinline{inst}, \lstinline{inst_1}
+	\item \textbf{Type-based names}: \lstinline{a✝}, \lstinline{a✝¹}, \lstinline{a✝²} for generic variables
+	\item \textbf{Pattern recognition}: Common patterns get predictable names
+\end{itemize}
+
+
+\subsection{\textbf{5. Example: Step-by-Step Breakdown}}
+
+\begin{lstlisting}[language=lean]
+theorem my_theorem : ∀ {R : Type v} [Mul R] [Add R] [RightDistribClass R] (a b c : R), 
+  (a + b) * c = a * c + b * c := by
+  -- Goal: ⊢ ∀ {R : Type v} [Mul R] [Add R] [RightDistribClass R] (a b c : R), (a + b) * c = a * c + b * c
+  
+  intro R
+  -- Goal: ⊢ [Mul R] → [Add R] → [RightDistribClass R] → ∀ (a b c : R), (a + b) * c = a * c + b * c
+  -- Context: R : Type v
+  
+  intro inst_mul
+  -- Goal: ⊢ [Add R] → [RightDistribClass R] → ∀ (a b c : R), (a + b) * c = a * c + b * c
+  -- Context: R : Type v, inst_mul : Mul R
+  
+  intro inst_add
+  -- Goal: ⊢ [RightDistribClass R] → ∀ (a b c : R), (a + b) * c = a * c + b * c
+  -- Context: R : Type v, inst_mul : Mul R, inst_add : Add R
+  
+  intro inst_distrib
+  -- Goal: ⊢ ∀ (a b c : R), (a + b) * c = a * c + b * c
+  -- Context: R : Type v, inst_mul : Mul R, inst_add : Add R, inst_distrib : RightDistribClass R
+  
+  intros a b c
+  -- Goal: ⊢ (a + b) * c = a * c + b * c
+  -- Context: R : Type v, ..., a b c : R
+\end{lstlisting}
+
+\subsection{\textbf{6. Key Insight: Type-Driven}}
+
+Lean's understanding is \textbf{entirely type-driven}:
+
+\begin{itemize}
+	\item Variables get their \textbf{meaning} from their \textbf{type}.
+	\item The \textbf{order} in the goal determines the \textbf{order} of introduction.
+	\item \textbf{Names} are just labels—the \textbf{types} are what matter for correctness.
+\end{itemize}
+
+
+\subsection{\textbf{7. What If You Get It Wrong?}}
+
+If you try to assign incompatible names:
+
+\begin{lstlisting}[language=lean]
+intros my_number my_function  -- Wrong types
+\end{lstlisting}
+Lean will give a \textbf{type error} because it expects specific types in specific positions.
+
+
+\subsection{\textbf{Summary}}
+
+Lean understands variables through:
+
+\begin{enumerate}
+	\item \textbf{Type annotations} in the goal (\lstinline{R : Type v}, \lstinline{a : R}, etc.)
+	\item \textbf{Sequential processing} of quantifiers and implications
+	\item \textbf{Type checking} to ensure consistency
+	\item \textbf{Context building} as each variable is introduced
+\end{enumerate}
+
+The key is that \textbf{types carry all the semantic information}—names are just convenient labels!
+
+
+\end{document}

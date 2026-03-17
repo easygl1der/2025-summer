@@ -1,0 +1,179 @@
+\documentclass{amsart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+\usepackage{xeCJK}
+\setCJKmainfont{Noto Serif CJK SC}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+		% 超链接设置
+		\hypersetup{
+		    colorlinks=true,
+		    linkcolor=red,
+		    filecolor=magenta,
+		    urlcolor=cyan,
+		    pdftitle={\@title},
+		    pdfauthor={\@author},
+		    pdfsubject={数学笔记},
+		    pdfkeywords={数学},
+		    bookmarksnumbered=true,
+		    bookmarksopen=true,
+		    bookmarksopenlevel=6,
+		    pdfstartview=FitH,
+		    pdfpagemode=UseOutlines,
+		    pdfborder={0 0 0}
+		}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{problem}[theorem]{Problem}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{observation}[theorem]{Observation}
+
+% 解答环境
+\newtheorem*{solution}{Solution}
+\newtheorem*{proof*}{Proof}
+
+% 图片路径
+\graphicspath{{F:/资料/2025-summer/figures/}}
+
+\author{乐绎华, Yue Yihua}
+\address{中山大学, Sun Yat-sen University}
+\email{yueyh@mail2.sysu.edu.cn}
+\date{\today}
+\title{Mathematical Notes}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+For the simplex, the exponential representation is
+\[
+(\Delta _n,\oplus ;\mathbb{R},\odot )\to \mathrm{Hom}(\Omega^{e}_{x};\mathbb{R})
+\]
+\[
+p\mapsto p^{(e)}(\cdot \mid x)
+\]
+\[
+p\oplus q\mapsto p^{(e)}(\cdot \mid x+y)
+\]
+\[
+c\odot p\mapsto p^{(e)}(\cdot \mid cx)
+\]
+where $x=\left( \log\frac{p_1}{p_0},\dots,\log\frac{p_n}{p_0} \right)$.
+
+Consider the dual space of $\Delta _n$, denoted $\Delta _n^{*}$, defined in the usual way as
+\[
+\Delta _n^{*}:=\mathrm{Hom}(\Delta _n,\mathbb{R}),
+\]
+the set of all real‐valued linear functionals with respect to the Aitchison vector‐space structure on $\Delta_n$.  For $f,g\in\Delta _n^{*}$ and $c\in\mathbb{R}$ we endow $\Delta _n^{*}$ with the \textit{ordinary} pointwise operations
+\[
+(f+g)(p)\coloneqq f(p)+g(p),\qquad (c\,f)(p)\coloneqq c\,f(p).
+\]
+The relation between the exponential representation $p^{(e)}(\cdot \mid x)$ and mixture representation $p^{(m)}(\cdot \mid u)$ is
+\[
+u_i=\frac{e^{ x^{i} }}{1+\sum_{i=1}^{n} e^{ x^{i} }}\iff x^{i}=\log\frac{u_i}{1-\sum_{i=1}^{n} u_i}
+\]
+Then, for every $p\in\Delta_n$,
+\[
+(f+g)(p)=f(p)+g(p),\qquad (c\,f)(p)=c\,f(p).
+\]
+In particular, if we encode the value of a functional through its \textbf{mixture parameters}
+$f(p)=p^{(m)}(\cdot\mid u^{(f)}_p)$ and $g(p)=p^{(m)}(\cdot\mid u^{(g)}_p)$, then
+\[
+(f+g)(p)\mapsto p^{(m)}\bigl(\cdot\mid u^{(f)}_p+u^{(g)}_p\bigr),\qquad
+(c\,f)(p)\mapsto p^{(m)}\bigl(\cdot\mid c\,u^{(f)}_p\bigr).
+\]
+This shows that the \textbf{ordinary} vector‐space structure on the dual space is compatible with the mixture parameterisation.
+
+The centered log‐ratio (clr) of $p$ is itself a functional and hence belongs to $\Delta _n^{*}$.
+
+An inner product in $\Delta _n$ is defined by
+\[
+\left< p,q \right>  =\sum_{i=0}^{n} \text{clr}_i(p)\text{clr}_i(q)=\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} \log\frac{p_i}{p_j}\log\frac{q_i}{q_j}
+\]
+It induces a norm in $\Delta _n$,
+\[
+\lVert p \rVert =\frac{1}{2(n+1)}\sum_{i=0}^{n} \sum_{j=0}^{n} \left( \log\frac{p_i}{p_j} \right)^{2}\qquad \text{for }p\in \Delta _n
+\]
+The norm above is an example denoted by $L^{2}$ -norm. In general, for any norm in $\Delta _n$, its dual norm in $\Delta _n^{*}$ is well-defined by
+\[
+\lVert f \rVert _{*}=\sup_{\lVert p \rVert =1}\lVert f(p) \rVert =\sup_{p\in\Delta _n}\frac{\lVert f(p) \rVert }{\lVert p \rVert }\qquad \text{for }f\in \Delta _n^{*}
+\]
+It must satisfy the standard norm axioms
+
+\begin{itemize}
+	\item $\lVert f+g \rVert_{*}\leq\lVert f \rVert_{*}+\lVert g \rVert_{*}$ (triangle inequality),
+	\item $\lVert c\,f \rVert_{*}=|c|\,\lVert f \rVert_{*}$ (positive homogeneity),
+	\item $\lVert f \rVert_{*}=0\iff f=\mathbf{o}$.
+\end{itemize}
+
+The exponential parameterization $x=[x^{1},\dots,x^{n}]$ has the advantage to express the vector space structure of $\Delta _n$ readily. For $\mathrm{p}=p(\zeta \mid x), \mathrm{q}=p(\zeta \mid y)$, it can be shown that
+
+\begin{enumerate}
+	\item $\mathrm{p} \oplus \mathrm{q}=p(\zeta \mid x+y)$;
+	\item $c \odot \mathrm{p}=p(\zeta \mid c x)$.
+\end{enumerate}
+
+We wonder if the mixture parameterization $u=[u_1,\dots,u_n]$ also has advantage to express the vector space structure of $\Delta _n^{*}$ for some specific norm over $\Delta _n^{*}$, since the mixture parameterization is the dual of exponential parameteriazation.
+
+
+\end{document}

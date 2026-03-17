@@ -1,0 +1,449 @@
+\documentclass{ctexart}
+
+% 数学相关宏包
+\usepackage{amsmath,mathtools,amsthm,amssymb}
+\usepackage{bbm}
+\usepackage{mathrsfs}
+\usepackage{centernot}
+
+% 图形和绘图
+\usepackage{graphicx,float}
+\usepackage{tikz,tikz-cd}
+\usepackage{pgfplots}
+\usepackage[framemethod=TikZ]{mdframed}
+\usetikzlibrary{decorations.pathmorphing,positioning,arrows,automata,calc,shapes,patterns}
+\pgfplotsset{compat=1.18}
+\usepgfplotslibrary{statistics}
+
+% 表格和列表
+\usepackage{booktabs,multirow,colortbl}
+\usepackage{enumitem}
+\setlist[itemize,enumerate,description]{noitemsep}
+\setlistdepth{9}
+
+% 算法
+\usepackage{algorithm,algorithmic}
+
+% 字体和颜色
+\usepackage{xcolor,listings}
+
+% 页面和链接
+\usepackage{fancyhdr,caption}
+\usepackage{hyperref}
+\usepackage{cleveref}
+
+% 工具宏包
+\usepackage{etoolbox,letltxmacro,docmute}
+\usepackage{gensymb}
+
+% 自定义设置
+\renewcommand{\arraystretch}{1.5}
+\let\originalmathbb\mathbb
+\renewcommand{\mathbb}[1]{%
+    \ifstrequal{#1}{1}{\mathbbm{#1}}{\originalmathbb{#1}}%
+}
+
+% 颜色定义
+\definecolor{lightblue}{RGB}{173,216,230}
+\definecolor{lightgreen}{RGB}{144,238,144}
+\definecolor{lightyellow}{RGB}{255,255,224}
+\definecolor{lightgray}{RGB}{211,211,211}
+
+% 超链接设置
+\hypersetup{
+    colorlinks=true,
+    linkcolor=red,
+    filecolor=magenta,
+    urlcolor=cyan,
+    pdftitle={数学笔记},
+    pdfauthor={乐绎华},
+    pdfsubject={数学笔记},
+    pdfkeywords={数学},
+    bookmarksnumbered=true,
+    bookmarksopen=true,
+    bookmarksopenlevel=6,
+    pdfstartview=FitH,
+    pdfpagemode=UseOutlines,
+    pdfborder={0 0 0}
+}
+
+% 定理环境
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{lemma}[theorem]{引理}
+\newtheorem{corollary}[theorem]{推论}
+\newtheorem{proposition}[theorem]{命题}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定义}
+\newtheorem{example}[theorem]{例}
+\newtheorem{exercise}[theorem]{练习}
+\newtheorem{problem}[theorem]{题目}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{备注}
+\newtheorem{note}[theorem]{注}
+\newtheorem{observation}[theorem]{观察}
+
+% 解答环境
+\newtheorem*{solution}{解}
+\newtheorem*{proof*}{证明}
+
+% 图片路径
+\graphicspath{{F:/iCloudDrive/iCloud~md~obsidian/2025-summer/figures/}}
+
+\author{乐绎华}
+\title{数学笔记}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+See do Cramo
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+
+"maximal" in condition (3) means that the family of charts $\{(U_\alpha, x_\alpha)\}$ cannot be extended further while still satisfying conditions (1) and (2).
+
+Condition (2) allow us to carry over all of the ideas of differential calculus in $\mathbb{R}^{n}$ to differentiable manifolds.
+
+The topology on $M$ is natually defined. $A\subset M$ is open iff $x_{\alpha}^{-1}(A\cap x_{\alpha}(U))$ is open in $\mathbb{R}^{n}$.
+
+\begin{example}[$\mathbb{P}^{n}$]
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\end{example}
+Let us exetnd the idea of differentiability to mappings between manifolds.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{11-differential-manifold-2025071022.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{itemize}
+	\item Immersion: A differentiable mapping $\varphi: M \rightarrow N$ is an immersion if its derivative $d \varphi_p$ : $T_p M \rightarrow T_{\varphi(p)} N$ is injective for all $p \in M$. This essentially means that locally, the map doesn't "fold" or "pinch."
+	\item Embedding: If, in addition to being an immersion, $\varphi$ is a homeomorphism onto its image $\varphi(M) \subset N$, then $\varphi$ is called an embedding. A homeomorphism means the map is:
+	\begin{enumerate}
+		\item Bijective (one-to-one and onto).
+		\item Continuous.
+		\item Has a continuous inverse.
+	\end{enumerate}
+\end{itemize}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+A homeomorphism requires that the map preserves topological properties. Specifically, it must map connected sets to connected sets, and locally, open sets in the domain should map to open sets in the image (with the induced topology).
+
+\begin{itemize}
+	\item An open neighborhood in the domain $(-3,0)$ (e.g., around a $t$ value close to 0 ) is connected.
+	\item The image of this connected neighborhood, when viewed with the subspace topology inherited from $\mathbb{R}^2$, becomes disconnected (in infinitely many pieces) near the point $(0,-1)$.
+\end{itemize}
+
+\begin{definition}[\textbf{Regular Surface}]
+A subset $S \subset \mathbb{R}^3$ is called a \textbf{regular surface} if for every point $p \in S$, there exists a neighborhood $V \subset \mathbb{R}^3$ containing $p$, and a map $\mathrm{x}: U \rightarrow V \cap S$ of an open set $U \subset \mathbb{R}^2$ onto $V \cap S$ such that:
+	\begin{enumerate}
+		\item $\mathbf{x}$ is a differentiable (or smooth, i.e., $C^{\infty}$ ) map. (This means all partial derivatives of all orders exist and are continuous.)
+		\item $\mathbf{x}$ is a homeomorphism. That is, $\mathbf{x}$ is continuous, bijective, and its inverse $\mathrm{x}^{-1}: V \cap S \rightarrow U$ is also continuous. (This ensures that x maps open sets in $U$ to open sets in $V \cap S$ with the subspace topology, and vice versa. This condition specifically rules out self-intersections and pathological behaviors like the "comb space" example.)
+		\item For each $q \in U$, the differential $d \mathrm{x}_q: \mathbb{R}^2 \rightarrow \mathbb{R}^3$ is injective (one-to-one). This is also called the "regularity condition" or "immersion condition" for the parametrization. It means that the partial derivative vectors $\frac{\partial \mathrm{x}}{\partial u}$ and $\frac{\partial \mathrm{x}}{\partial v}$ are linearly independent at every point in $U$. (This condition ensures that there is a well-defined tangent plane at every point and that the surface does not have "sharp points" or "cusps").
+	\end{enumerate}\label{ff91ce}
+\end{definition}
+
+A regular surface $S\subset \mathbb{R}^{3}$ has differentiable structure given by $x_{\alpha}:U_{\alpha}\subset \mathbb{R}^{2}\to S$, which are embedding of $U_{\alpha}$ into $S$ by \cref{ff91ce}. We want to show the inclusion $i:S\to \mathbb{R}^{3}$ is an embedding, i.e. $S$ is a submanifold of $\mathbb{R}^{3}$.
+
+In fact, $id_{V}^{-1}\circ i\circ x=x$ is differentiable, then by definition, $i$ is differentiable; and $i$ is clearly homeomorphism. We are done!
+
+Every immersion is locally an embedding.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+Defintion of regular value:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-differential-manifold-2025071023.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{note}
+Let $R:(y_1,\dots,y_n)\mapsto(-y_1,\dots,y_n)$; if $x_{2}^{-1}\circ x_1$ has negative Jacobian at $p$, we replace $x_2$ by $x_{2}\circ R$ in its differential stucture.
+\end{note}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The transition map $\pi_2\circ \pi_1 ^{-1}:(x_j)\mapsto(y_j^{-1}(x_j))\mapsto\frac{x_j}{\sum_{i=1}^{n}x_i^{2}}$. The Jacobian is $(-1)^{n}/\lvert \mathbf{x} \rvert ^{2}$, which is either positive or negative. By approach in Example 4.5, $S^{n}$ is orientable.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+
+The linear map $dA_{p}:T_{p}S^{n}\subset \mathbb{R}^{n+1}\to T_{-p}S^{n}$ has matrix form $-I_{n+1}$, which has determinant $(-1)^{n+1}$.
+
+\begin{definition}[Definitions of Orientation Preservation and Reversal]
+A differentiable map $\phi: M \rightarrow N$ between oriented manifolds is said to:
+	\begin{itemize}
+		\item \textbf{Preserve Orientation} at a point $p \in M$ if its differential $d \phi_p: T_p M \rightarrow T_{\phi(p)} N$ maps an oriented basis for $T_p M$ to an oriented basis for $T_{\phi(p)} N$. In local coordinates, this means the Jacobian determinant of the local representation of $\phi$ is positive.
+		\item \textbf{Reverse Orientation} at a point $p \in M$ if its differential $d \phi_p: T_p M \rightarrow T_{\phi(p)} N$ maps an oriented basis for $T_p M$ to an oppositely oriented basis for $T_{\phi(p)} N$. In local coordinates, this means the Jacobian determinant of the local representation of $\phi$ is negative.
+	\end{itemize}
+\end{definition}
+If $\phi$ is a diffeomorphism, then its Jacobian determinant will be non-zero everywhere.
+
+If it has a constant sign (which it will if the domain is connected), then $\phi$ either preserves orientation everywhere or reverses orientation everywhere.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+
+$\mathbb{P}^{n}(\mathbb{R})$ is orientable iff $n$ is odd, because
+
+\begin{itemize}
+	\item $S^{n}$ is always orientable.
+	\item If $n$ is odd: The antipodal map $A$ preserves orientation on $S^n$. Therefore, by the theorem, $\mathbb{P}^n(\mathbb{R})=S^n /\{I, A\}$ is orientable.
+	\item If $n$ is even: The antipodal map $A$ reverses orientation on $S^n$. Therefore, by the theorem, $\mathbb{P}^n(\mathbb{R})=S^n /\{I, A\}$ is non-orientable.
+\end{itemize}
+
+We abstract the process of $\mathbb{P}^{n}\cong S^{n}/\{ I,A \}$.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+Example:
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-differential-manifold-2025071100.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{1-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{2-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{3-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{4-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{5-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{6-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{7-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{8-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{9-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\textwidth]{10-differential-manifold-2025071110.png}
+% \caption{}
+\label{}
+\end{figure}
+
+
+\end{document}

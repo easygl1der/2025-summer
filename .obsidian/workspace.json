@@ -1,0 +1,251 @@
+{
+  "main": {
+    "id": "d8345e3b4577a7ed",
+    "type": "split",
+    "children": [
+      {
+        "id": "ae6ee9f4e98333e2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3a73c12f132bc422",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "做一些让自己开心的事情.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "做一些让自己开心的事情"
+            }
+          },
+          {
+            "id": "42a97d50cbd39fd6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "book-for-PhD.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "book-for-PhD"
+            }
+          },
+          {
+            "id": "c95613980fabaffa",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "westlake-university/homework/Orlicz-space.md",
+                "mode": "source",
+                "source": false,
+                "backlinks": false
+              },
+              "icon": "lucide-file",
+              "title": "Orlicz-space"
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "8e04e9ff5fe93489",
+    "type": "split",
+    "children": [
+      {
+        "id": "bce988c69d82d532",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "37179d8897e7b58d",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "fa63bc994bc74367",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "7ebedb44ad9a26ae",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "c7eb80153e744575",
+    "type": "split",
+    "children": [
+      {
+        "id": "2835ca7618c2ef0c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "33520fb4075068e1",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "westlake-university/information-geometry-2.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for information-geometry-2"
+            }
+          },
+          {
+            "id": "e9390ebb2eeb36d7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "d8e43e00565c1c71",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "803804884e1a16c1",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "bases:Create new base": false,
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false
+    }
+  },
+  "active": "c95613980fabaffa",
+  "lastOpenFiles": [
+    "figures/3-Orlicz-space-2025120523.png",
+    "figures/2-Orlicz-space-2025120523.png",
+    "figures/1-Orlicz-space-2025120523.png",
+    "figures/Orlicz-space-2025120523.png",
+    "westlake-university/homework/Orlicz-space.md",
+    "westlake-university/homework/includes/Lecture 1 part 1 post.pdf",
+    "westlake-university/homework/includes/Orlicz-space.synctex(busy)",
+    "westlake-university/homework/includes/Orlicz-space.synctex.gz",
+    "westlake-university\\homework\\includes\\Orlicz-space.tex",
+    "westlake-university/homework/find-other-suitable-norm.md",
+    "westlake-university/information-geometry-notes.md",
+    "westlake-university/finding-Lyapunov-functions-2-1.md",
+    "westlake-university/finding-Lyapunov-functions-2.md",
+    "computational-math/finite-element-method.md",
+    "algebraic-number-theory/dedekind-domains.md",
+    "Stochastic-analysis/ito-stochastic-calculus.md",
+    "pde/elliptic.md",
+    "缓考安排.md",
+    "缓考安排 1.md",
+    "做一些让自己开心的事情.md",
+    "book-for-PhD.md",
+    "figures/1-book-for-PhD-2025091811.png",
+    "figures/book-for-PhD-2025091811.png",
+    "book-for-PhD 1.md",
+    "figures/book-for-PhD-2025091620.png",
+    "Algebra-Geometry/Kahler-Manifold.md",
+    "westlake-university/homework/includes/Orlicz-space.pdf",
+    "westlake-university/homework/includes/Orlicz-space.toc",
+    "westlake-university/homework/includes/Orlicz-space.out",
+    "westlake-university/homework/includes/Orlicz-space.aux",
+    "westlake-university/homework/includes/Orlicz-space.log",
+    "westlake-university/homework/includes/Orlicz-space.tex",
+    "figures/3-Orlicz-space-2025091117.png",
+    "figures/2-Orlicz-space-2025091117.png",
+    "figures/1-Orlicz-space-2025091117.png",
+    "figures/Orlicz-space-2025091117.png",
+    "Riemannian-geometry/Riemannian-geometry.md",
+    "Riemannian-geometry/differential-manifold.md",
+    "摘抄.md",
+    "general-relativity/general-relativity.md",
+    "Algebra-Geometry/kahler-geometry.md",
+    "健身指南.md",
+    "memory.md",
+    "information-geometry/Rho-tau.md",
+    "Algebra-Geometry/Bruhat-order.md",
+    "summary-Ni.md"
+  ]
+}

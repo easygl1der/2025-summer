@@ -1,0 +1,38 @@
+\contentsline {section}{\tocsection {}{1}{Introduction}}{2}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{Why Lyapunov Functions Matter}}{2}{subsection.1.1}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{The Core Challenge}}{2}{subsection.1.2}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{Systematic Approaches}}{2}{subsection.1.3}%
+\contentsline {subsection}{\tocsubsection {}{1.4}{A Concrete Example: The Art in Practice}}{3}{subsection.1.4}%
+\contentsline {subsection}{\tocsubsection {}{1.5}{Roadmap of This Lecture}}{3}{subsection.1.5}%
+\contentsline {section}{\tocsection {}{2}{Setup}}{3}{section.2}%
+\contentsline {section}{\tocsection {}{3}{Adjoint of Markov Operators}}{4}{section.3}%
+\contentsline {subsection}{\tocsubsection {}{3.1}{Key Properties:}}{4}{subsection.3.1}%
+\contentsline {section}{\tocsection {}{4}{Lyapunov Functions and Convergence}}{5}{section.4}%
+\contentsline {subsection}{\tocsubsection {}{4.1}{Foster-Lyapunov Criteria}}{5}{subsection.4.1}%
+\contentsline {subsection}{\tocsubsection {}{4.2}{Connection to Tightness}}{5}{subsection.4.2}%
+\contentsline {subsection}{\tocsubsection {}{4.3}{Lyapunov Functions and Supermartingales}}{5}{subsection.4.3}%
+\contentsline {subsection}{\tocsubsection {}{4.4}{Applications}}{6}{subsection.4.4}%
+\contentsline {subsection}{\tocsubsection {}{4.5}{Example: Classical Drift Condition}}{6}{subsection.4.5}%
+\contentsline {section}{\tocsection {}{5}{Methods for Finding Lyapunov Functions}}{6}{section.5}%
+\contentsline {subsection}{\tocsubsection {}{5.1}{1. Quadratic Forms (for Linear Systems)}}{6}{subsection.5.1}%
+\contentsline {subsection}{\tocsubsection {}{5.2}{2. Distance-Based Functions}}{6}{subsection.5.2}%
+\contentsline {subsection}{\tocsubsection {}{5.3}{3. Test Functions Method}}{6}{subsection.5.3}%
+\contentsline {subsection}{\tocsubsection {}{5.4}{4. Coupling Method}}{6}{subsection.5.4}%
+\contentsline {section}{\tocsection {}{6}{Convergence Rates from Lyapunov Functions}}{6}{section.6}%
+\contentsline {subsection}{\tocsubsection {}{6.1}{Proof Sketch:}}{7}{subsection.6.1}%
+\contentsline {section}{\tocsection {}{7}{Examples}}{7}{section.7}%
+\contentsline {subsection}{\tocsubsection {}{7.1}{Example 1: Random Walk with Drift}}{7}{subsection.7.1}%
+\contentsline {subsection}{\tocsubsection {}{7.2}{Example 2: Metropolis-Hastings Algorithm}}{7}{subsection.7.2}%
+\contentsline {subsection}{\tocsubsection {}{7.3}{Underdamped Langevin Dynamics}}{7}{subsection.7.3}%
+\contentsline {subsection}{\tocsubsection {}{7.4}{Finding a Lyapunov Function}}{8}{subsection.7.4}%
+\contentsline {section}{\tocsection {}{8}{Practical Considerations}}{8}{section.8}%
+\contentsline {subsection}{\tocsubsection {}{8.1}{Choosing the Right Lyapunov Function}}{8}{subsection.8.1}%
+\contentsline {subsection}{\tocsubsection {}{8.2}{Verifying the Drift Condition}}{8}{subsection.8.2}%
+\contentsline {subsection}{\tocsubsection {}{8.3}{Common Pitfalls}}{9}{subsection.8.3}%
+\contentsline {section}{\tocsection {}{9}{Advanced Topics}}{9}{section.9}%
+\contentsline {subsection}{\tocsubsection {}{9.1}{Small Sets and Drift Conditions}}{9}{subsection.9.1}%
+\contentsline {subsection}{\tocsubsection {}{9.2}{Polynomial Convergence}}{9}{subsection.9.2}%
+\contentsline {subsection}{\tocsubsection {}{9.3}{Adaptive MCMC}}{9}{subsection.9.3}%
+\contentsline {subsection}{\tocsubsection {}{9.4}{Lyapunov Functions for Continuous-Time Chains}}{9}{subsection.9.4}%
+\contentsline {section}{\tocsection {}{10}{Summary}}{9}{section.10}%
+\contentsline {section}{\tocsection {}{11}{References}}{9}{section.11}%

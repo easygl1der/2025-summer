@@ -1,0 +1,18 @@
+{
+  "accentColor": "",
+  "baseFontSize": 25,
+  "textFontFamily": "",
+  "theme": "obsidian",
+  "cssTheme": "Things",
+  "enabledCssSnippets": [
+    "custom-admonitions.c9c6cb",
+    "【图标】预览网址加图标 - External Link Icons",
+    "【自定义】彩色时钟样式",
+    "【自定义】myhome 样式",
+    "【自定义】mytools 样式",
+    "【Linkcard】",
+    "【callout】Custom page preview",
+    "yaozhuwa@CSS"
+  ],
+  "interfaceFontFamily": "Sans Serif Collection"
+}

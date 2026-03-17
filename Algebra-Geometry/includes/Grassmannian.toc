@@ -1,0 +1,7 @@
+\contentsline {section}{\tocsection {}{1}{Why study Grassmannian?}}{1}{section.1}%
+\contentsline {subsection}{\tocsubsection {}{1.1}{\textbf {Linear Algebra \& Geometry}}}{2}{subsection.1.1}%
+\contentsline {subsection}{\tocsubsection {}{1.2}{\textbf {Algebraic Geometry}}}{2}{subsection.1.2}%
+\contentsline {subsection}{\tocsubsection {}{1.3}{\textbf {Topology \& Characteristic Classes}}}{2}{subsection.1.3}%
+\contentsline {subsection}{\tocsubsection {}{1.4}{\textbf {Representation Theory}}}{2}{subsection.1.4}%
+\contentsline {subsection}{\tocsubsection {}{1.5}{\textbf {Physics}}}{2}{subsection.1.5}%
+\contentsline {subsection}{\tocsubsection {}{1.6}{\textbf {Applied Mathematics}}}{3}{subsection.1.6}%
